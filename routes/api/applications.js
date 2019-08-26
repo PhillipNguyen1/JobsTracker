@@ -31,11 +31,13 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // Create new application by taking data from the json request
   const newApplication = new Application({
-    companyName: req.body.companyName,
+    companyName: req.body.companyName,,
+    applicationDate: req.body.applicationDate,
     position: req.body.position,
-    area: req.body.area,
+    location: req.body.location,
     salary: req.body.salary,
-    status: req.body.status
+    status: req.body.status,
+    portalLink: req.body.portalLink
   });
 
   // Save new application to database and
