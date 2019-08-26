@@ -3,6 +3,7 @@ const router = express.Router();
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const config = require('config');
 const PORT = 4000;
 
 const applications = require('./routes/api/applications');
@@ -12,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+const db = config.get('mongoURI');
 
 // Connect to Mongo
 mongoose
@@ -21,7 +22,7 @@ mongoose
   .catch(err => console.log(err));
 
 // Use Routes
-app.use('api/applications', applications);
+app.use('/api/applications', applications);
 
 
 app.listen(PORT, function() {
