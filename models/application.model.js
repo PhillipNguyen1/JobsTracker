@@ -8,7 +8,7 @@ const ApplicationSchema = new Schema({
     required: true
   },
   applicationDate: {
-    type: String,
+    type: String,     // TODO: change to Date
     required: true
   },
   position: {

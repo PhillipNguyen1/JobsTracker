@@ -31,7 +31,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // Create new application by taking data from the json request
   const newApplication = new Application({
-    companyName: req.body.companyName,,
+    companyName: req.body.companyName,
     applicationDate: req.body.applicationDate,
     position: req.body.position,
     location: req.body.location,
