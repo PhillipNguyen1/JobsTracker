@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Application Model
-const Application = require("../../models/application");
+const Application = require("../../models/application.model");
 
 /*
   TODO:

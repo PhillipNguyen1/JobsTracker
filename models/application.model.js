@@ -7,11 +7,15 @@ const ApplicationSchema = new Schema({
     type: String,
     required: true
   },
+  applicationDate: {
+    type: String,
+    required: true
+  },
   position: {
     type: String,
     required: true
   },
-  area: {
+  location: {
     type: String
   }, 
   salary: {
@@ -20,7 +24,10 @@ const ApplicationSchema = new Schema({
   status: {
     type: String,
     required: true
-  }
+  },
+  portalLink: {
+    type: String
+  },
 });
 
 module.exports = Application = mongoose.model('application', ApplicationSchema);
