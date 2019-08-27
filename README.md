@@ -7,6 +7,7 @@
    \     |     /
     |    |    |
 
+this is a nice butt
 
 Note: 
   - The 'config' folder, which holds information such as the database connection string, is ignored by git. 
