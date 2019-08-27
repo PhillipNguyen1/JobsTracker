@@ -7,11 +7,7 @@
    \     |     /
     |    |    |
 
-<<<<<<< HEAD
-this is a nice butt, it needs a butt plug. this is a conflict.
-=======
 this is a nice butt, it needs a butt plug. I need more buttplugs
->>>>>>> master
 
 Note: 
   - The 'config' folder, which holds information such as the database connection string, is ignored by git. 
