@@ -4,11 +4,6 @@ const router = express.Router();
 // Application Model
 const Application = require("../../models/application.model");
 
-/*
-  TODO:
-    - Implement router.update()
-*/
-
 // @route   GET api/applications
 // @desc    Get all applications
 // @access  Public
@@ -40,20 +35,26 @@ router.post("/", (req, res) => {
     portalLink: req.body.portalLink
   });
 
-  // Save new application to database and
-  // backend responds with the new application
+  // Save new application to database
   newApplication.save().then(app => res.json(app));
+});
+
+// @route   UPDATE api/applications/:id
+// @desc    UPDATE an application by id
+// @access  Public
+router.put("/:id", (req, res) => {
+  Application.findById(req.params.id)
+    .then(app => app.update(req.body).then(data => res.json("Application updated")))  // Updates application with the fields passed in the request body
+    .catch(err => res.status(404).json("Could not find application with that ID"));   // If no application found with given id, return error
 });
 
 // @route   DELETE api/applications/:id
 // @desc    Delete an application by id
 // @access  Public
 router.delete("/:id", (req, res) => {
-  // Find by id & remove from database
-  // If application does not exist, return 404
   Application.findById(req.params.id)
-    .then(app => app.remove().then(() => res.json({ app, success: true })))
-    .catch(err => res.status(404).json({ success: false }));
+    .then(app => app.remove().then(() => res.json({ app, success: true })))   // Removes application by id
+    .catch(err => res.status(404).json({ success: false }));                  // If no application found with given id, return error
 });
 
 module.exports = router;
