@@ -18,6 +18,7 @@ router.get("/", (req, res) => {
   Application.find()
     .sort({ companyName: 1 }) // Sorts company name in alphabetical order
     .then(app => res.json(app));
+
 });
 
 // @route   GET api/applications/:id
@@ -63,7 +64,7 @@ router.put("/:id", async (req, res) => {
     if (app == null){
       console.log("Application not inside database")
     }else{
-      app.update(req.body);
+      await app.update(req.body);
       res.json("Application has been updated")
     }
   }catch(err){
