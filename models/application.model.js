@@ -27,7 +27,7 @@ const ApplicationSchema = new Schema({
   },
   portalLink: {
     type: String
-  },
+  }
 });
 
 module.exports = Application = mongoose.model('application', ApplicationSchema);
