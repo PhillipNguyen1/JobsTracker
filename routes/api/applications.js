@@ -21,7 +21,7 @@ router.get("/:id", async (req, res) => {
     const app = await Application.findById(req.params.id);
     res.json(app);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 });
 
