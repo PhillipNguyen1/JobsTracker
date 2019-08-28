@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
 
     res.json(await newApplication.save()); // Save new application to database
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 });
 
@@ -77,7 +77,7 @@ router.delete("/:id", async (req, res) => {
     } // If app is found, delete it from the database
     else res.json(await app.delete());
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 });
 
