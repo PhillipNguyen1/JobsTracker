@@ -5,12 +5,15 @@ const router = express.Router();
 const Application = require("../../models/application.model");
 
 // @route   GET api/applications
-// @desc    Get all applications
+// @desc    Get all applications (no sorting)
 // @access  Public
-router.get("/", (req, res) => {
-  Application.find()
-    .sort({ companyName: 1 }) // Sorts company name in alphabetical order
-    .then(app => res.json(app));
+router.get("/", async (req, res) => { 
+  try{
+    const apps = await Application.find();
+    res.json(apps);
+  }catch(err){
+    console.error(err);
+  }
 });
 
 // @route   GET api/applications/:id
