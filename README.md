@@ -1,14 +1,3 @@
-  \           /
-  .`         `.
-.'             `.
-:        |       :
-'.      .'.     .'
-  \`'''`\ /`'''`/
-   \     |     /
-    |    |    |
-
-this is a nice butt, it needs a butt plug. I need more buttplugs
-
 Note: 
   - The 'config' folder, which holds information such as the database connection string, is ignored by git. 
   - To run, you will need to create your own 'config' folder with a default.json file to store 
