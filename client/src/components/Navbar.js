@@ -14,16 +14,15 @@ const useStyles = makeStyles(theme => ({
       },
 }));
 
-const Navbar = () =>{
+export default function Navbar() {
     const classes = useStyles();
     return(
         <div className={classes.root}>
             <AppBar position="static">
                 <ToolBar>
                     <Typography variant='title' color='inherit' className={classes.title}>
-                        React & Material UI Sample Yaba 
+                        Job Tacker
                     </Typography>
-
                     
                     <Button color="inherit">Login</Button>
                 </ToolBar>
@@ -31,5 +30,3 @@ const Navbar = () =>{
         </div>
     );
 }
-
-export default Navbar;

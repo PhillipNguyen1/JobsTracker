@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 
-const db = require("config").get('mongoURI')
+const db = require('./config/keys').mongoURI;
 
 // Connect to Mongo
 mongoose
