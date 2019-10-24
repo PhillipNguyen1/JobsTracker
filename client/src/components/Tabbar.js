@@ -78,8 +78,8 @@ function TabPanel(props) {
             onChange={handleChange}
             aria-label="nav tabs example"
           >
-            <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
-            <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
+            <LinkTab label="Applications" href="/drafts" {...a11yProps(0)} />
+            <LinkTab label="Create Entry" href="/trash" {...a11yProps(1)} />
             <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
