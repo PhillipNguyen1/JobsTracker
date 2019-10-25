@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
+import ApplicationsTable from './ApplicationsTable';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -84,7 +84,8 @@ function TabPanel(props) {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-        <img src={commy} />
+        {/* <img src={commy} /> */}
+          <ApplicationsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <img src={slap} />
