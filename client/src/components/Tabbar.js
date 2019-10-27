@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import ApplicationsTable from './ApplicationsTable';
+import Timer from './Timer';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -25,20 +26,20 @@ function TabPanel(props) {
     );
   }
   
-  TabPanel.propTypes = {
+TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
   };
   
-  function a11yProps(index) {
+function a11yProps(index) {
     return {
       id: `nav-tab-${index}`,
       'aria-controls': `nav-tabpanel-${index}`,
     };
   }
   
-  function LinkTab(props) {
+function LinkTab(props) {
     return (
       <Tab
         component="a"
@@ -50,14 +51,14 @@ function TabPanel(props) {
     );
   }
   
-  const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.paper,
     },
   }));
   
-  export default function Tabbar() {
+export default function Tabbar() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -92,6 +93,7 @@ function TabPanel(props) {
         </TabPanel>
         <TabPanel value={value} index={2}>
           <img src={kimm} />
+          <Timer/>
         </TabPanel>
       </div>
     );
