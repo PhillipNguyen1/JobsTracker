@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 // material UI styling. similar to CSS
 // I think this is called CSS in JS if you want to look it up
@@ -24,17 +30,20 @@ const ApplicationsTable = () => {
     {
       id: 1,
       companyName: "Apple",
-      position: "software engineer"
+      position: "software engineer",
+      appDate: "10/02"
     },
     {
       id: 2,
       companyName: "Google",
-      position: "software engineer"
+      position: "software engineer",
+      appDate: "10/08"
     },
     {
       id: 3,
       companyName: "Amazon",
-      position: "senior engineer"
+      position: "senior engineer",
+      appDate: "10/12"
     }
   ]);
   const [isVisible, setIsVisible] = useState(false); // list is initial invisible
@@ -82,13 +91,31 @@ const ApplicationsTable = () => {
   // returns the list of application
   const listApplications = (
     <div className={classes.appList}>
-      <h1>List of Applications</h1>
-      {/* Lists applications */}
-      {applications.map(app => (
-        <h3 key={app.id}>
-          {app.id}: {app.companyName}
-        </h3>
-      ))}
+      <Paper className={classes.root}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+                <TableCell>Company</TableCell>
+                <TableCell align="right">Position</TableCell>
+                <TableCell align="right">Aplication Date</TableCell>
+                <TableCell align="right">Response?</TableCell>
+                <TableCell align="right">How far?</TableCell>
+                <TableCell align="right">Portal Link</TableCell>
+                <TableCell align="right">Job Board</TableCell>
+            </TableRow>
+          </TableHead>
+        
+          <TableBody>
+            {applications.map(app => (
+                <TableRow key={app.companyName}>
+                <TableCell component="th" scope="row"> {app.companyName} </TableCell>
+                <TableCell align="right">{app.position}</TableCell>
+                <TableCell align="right">{app.appDate}</TableCell>
+                </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+      </Paper>
     </div>
   );
 
@@ -125,7 +152,11 @@ const ApplicationsTable = () => {
 
       {/* if isVisible, display list of applications. Else, display nothing */}
       {isVisible ? listApplications : null}
+
+      
+
     </div>
+
   );
 };
 

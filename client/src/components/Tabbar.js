@@ -7,7 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import ApplicationsTable from './ApplicationsTable';
-import Timer from './Timer';
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -64,7 +64,6 @@ export default function Tabbar() {
 
     const kimm = require('../Images/061118-kim-jong-un-feature.jpg');
     const slap = require('../Images/p8xoszwqtwp31.png');
-    const commy = require('../Images/c6t4f7c3h7p31.jpg')
   
     const handleChange = (event, newValue) => {
       setValue(newValue);
@@ -85,7 +84,6 @@ export default function Tabbar() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-        {/* <img src={commy} /> */}
           <ApplicationsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -93,7 +91,6 @@ export default function Tabbar() {
         </TabPanel>
         <TabPanel value={value} index={2}>
           <img src={kimm} />
-          <Timer/>
         </TabPanel>
       </div>
     );
