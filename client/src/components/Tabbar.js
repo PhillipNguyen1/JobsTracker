@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import ApplicationsTable from './ApplicationsTable';
 
-
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
