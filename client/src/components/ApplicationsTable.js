@@ -8,6 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
+import axios from 'axios';
+
 // material UI styling. similar to CSS
 // I think this is called CSS in JS if you want to look it up
 // makeStyles & theme are a material UI thing
@@ -49,16 +51,7 @@ const ApplicationsTable = () => {
   ]);
   const [isVisible, setIsVisible] = useState(false); // list is initial invisible
 
-  // EXAMPLE FUNCTIONS //
-  // syntax for example function
-  const exampleFunction = () => {
-    console.log("hi");
-  };
 
-  // different syntax. Same functionality as above
-  function exampleFunction2() {
-    console.log("hi");
-  }
 
   // Adds an application to the hook state
   const handleNewApplication = event => {
