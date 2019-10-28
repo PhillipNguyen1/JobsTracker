@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import ApplicationsTable from './components/ApplicationsTable';
 import Navbar from './components/Navbar';
 import Tabbar from './components/Tabbar';
 
