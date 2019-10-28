@@ -25,20 +25,20 @@ function TabPanel(props) {
     );
   }
   
-  TabPanel.propTypes = {
+TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
   };
   
-  function a11yProps(index) {
+function a11yProps(index) {
     return {
       id: `nav-tab-${index}`,
       'aria-controls': `nav-tabpanel-${index}`,
     };
   }
   
-  function LinkTab(props) {
+function LinkTab(props) {
     return (
       <Tab
         component="a"
@@ -50,20 +50,19 @@ function TabPanel(props) {
     );
   }
   
-  const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
       backgroundColor: theme.palette.background.paper,
     },
   }));
   
-  export default function Tabbar() {
+export default function Tabbar() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
     const kimm = require('../Images/061118-kim-jong-un-feature.jpg');
     const slap = require('../Images/p8xoszwqtwp31.png');
-    const commy = require('../Images/c6t4f7c3h7p31.jpg')
   
     const handleChange = (event, newValue) => {
       setValue(newValue);
@@ -84,7 +83,6 @@ function TabPanel(props) {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-        {/* <img src={commy} /> */}
           <ApplicationsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
