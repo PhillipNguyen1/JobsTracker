@@ -86,10 +86,10 @@ export default function Tabbar() {
           <ApplicationsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <img src={slap} />
+          <img src={slap} alt="hentai"/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <img src={kimm} />
+          <img src={kimm} alt="lord commander"/>
         </TabPanel>
       </div>
     );

@@ -41,7 +41,10 @@ router.post("/", async (req, res) => {
       location: req.body.location,
       salary: req.body.salary,
       status: req.body.status,
-      portalLink: req.body.portalLink
+      response: req.body.response,
+      portalLink: req.body.portalLink,
+      howFar: req.body.howFar,
+      JobBoard: req.body.JobBoard
     });
 
     res.json(await newApplication.save()); // Save new application to database

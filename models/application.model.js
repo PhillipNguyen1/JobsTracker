@@ -27,6 +27,15 @@ const ApplicationSchema = new Schema({
   },
   portalLink: {
     type: String
+  },
+  response: {
+    type: String
+  },
+  howFar:{
+    type: String
+  },
+  JobBoard:{
+    type: String
   }
 });
 
