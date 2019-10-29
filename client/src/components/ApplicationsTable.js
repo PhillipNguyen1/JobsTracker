@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -26,31 +26,27 @@ const useStyles = makeStyles(theme => ({
 const ApplicationsTable = () => {
   const classes = useStyles(); // This is how we can access the styling. ex) "classes.button"
 
+  
   // applications is an array of objects
   // Only 3 things per object for example purposes
-  const [applications, setApplications] = useState([
-    {
-      id: 1,
-      companyName: "Apple",
-      position: "software engineer",
-      appDate: "10/02"
-
-    },
-    {
-      id: 2,
-      companyName: "Google",
-      position: "software engineer",
-      appDate: "10/08"
-    },
-    {
-      id: 3,
-      companyName: "Amazon",
-      position: "senior engineer",
-      appDate: "10/12"
-    }
-  ]);
+  const [applications, setApplications] = useState([]);
   const [isVisible, setIsVisible] = useState(false); // list is initial invisible
 
+  // This async function gets called whenever the page loads and will update the data accordingly 
+  async function fetchData(){
+    const result = await axios('http://localhost:4000/api/applications');
+    try{
+      setApplications(result.data)
+    }catch(err){
+      console.error(err);
+    }
+  // setApplications(result.data);
+  console.log(result.data)
+  }
+
+  useEffect( () => {
+    fetchData();
+  }, []);
 
 
   // Adds an application to the hook state
@@ -92,6 +88,7 @@ const ApplicationsTable = () => {
                 <TableCell>Company</TableCell>
                 <TableCell align="right">Position</TableCell>
                 <TableCell align="right">Aplication Date</TableCell>
+                <TableCell align="right">Status</TableCell>
                 <TableCell align="right">Response?</TableCell>
                 <TableCell align="right">How far?</TableCell>
                 <TableCell align="right">Portal Link</TableCell>
@@ -104,7 +101,12 @@ const ApplicationsTable = () => {
                 <TableRow key={app.companyName}>
                 <TableCell component="th" scope="row"> {app.companyName} </TableCell>
                 <TableCell align="right">{app.position}</TableCell>
-                <TableCell align="right">{app.appDate}</TableCell>
+                <TableCell align="right">{app.applicationDate}</TableCell>
+                <TableCell align="right">{app.status}</TableCell>
+                <TableCell align="right">{app.response}</TableCell>
+                <TableCell align="right">{app.howFar}</TableCell>
+                <TableCell align="right">{app.portalLink}</TableCell>
+                <TableCell align="right">{app.JobBoard}</TableCell>
                 </TableRow>
             ))}
             </TableBody>
