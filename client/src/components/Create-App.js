@@ -24,53 +24,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const currencies = [
-    {
-      value: 'USD',
-      label: '$',
-    },
-    {
-      value: 'EUR',
-      label: '€',
-    },
-    {
-      value: 'BTC',
-      label: '฿',
-    },
-    {
-      value: 'JPY',
-      label: '¥',
-    },
-  ];
-  
-
 export default function CreateApplication() {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    name: "Cat in the Hat",
-    age: "",
-    multiline: "Controlled",
-    currency: "EUR"
-  });
 
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
-  };
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
+        required
         id="standard-name"
         label="Company Name"
         className={classes.textField}
-        value={values.name}
-        onChange={handleChange('name')}
         margin="normal"
       />
       <TextField
+        required
         id="standard-uncontrolled"
         label="Position"
-        defaultValue="foo"
+        defaultValue = ""
         className={classes.textField}
         margin="normal"
       />
@@ -78,125 +49,56 @@ export default function CreateApplication() {
         required
         id="standard-required"
         label="Aplpication Date"
-        defaultValue="Hello World"
+        defaultValue = ""
         className={classes.textField}
         margin="normal"
       />
       <TextField
-        error
-        id="standard-error"
+        id="standard-uncontrolled"
         label="Status"
-        defaultValue="Hello World"
+        defaultValue = ""
         className={classes.textField}
         margin="normal"
       />
       <TextField
-        disabled
-        id="standard-disabled"
+        id="standard-uncontrolled"
         label="Response?"
-        defaultValue="Hello World"
+        defaultValue = ""
         className={classes.textField}
         margin="normal"
       />
       <TextField
-        id="standard-password-input"
+        id="standard-uncontrolled"
         label="How Far?"
+        defaultValue = ""
         className={classes.textField}
-        type="password"
-        autoComplete="current-password"
         margin="normal"
       />
       <TextField
         id="standard-read-only-input"
         label="Portal Link"
-        defaultValue="Hello World"
+        defaultValue = ""
         className={classes.textField}
         margin="normal"
-        InputProps={{
-          readOnly: true,
-        }}
       />
       <TextField
         id="standard-dense"
         label="Job Board"
+        defaultValue = ""
         className={clsx(classes.textField, classes.dense)}
         margin="dense"
       />
       <TextField
-        id="standard-multiline-flexible"
-        label="Multiline"
-        multiline
-        rowsMax="4"
-        value={values.multiline}
-        onChange={handleChange('multiline')}
-        className={classes.textField}
-        margin="normal"
-      />
-      <TextField
-        id="standard-multiline-static"
-        label="Multiline"
-        multiline
-        rows="4"
-        defaultValue="Default Value"
-        className={classes.textField}
-        margin="normal"
-      />
-      <TextField
-        id="standard-with-placeholder"
-        label="With placeholder"
-        placeholder="Placeholder"
-        className={classes.textField}
-        margin="normal"
-      />
-      <TextField
-        id="standard-textarea"
-        label="With placeholder multiline"
-        placeholder="Placeholder"
-        multiline
-        className={classes.textField}
-        margin="normal"
-      />
-      <TextField
         id="standard-number"
-        label="Number"
-        value={values.age}
-        onChange={handleChange('age')}
+        label="Salary"
         type="number"
+        defaultValue = ""
         className={classes.textField}
         InputLabelProps={{
           shrink: true,
         }}
         margin="normal"
       />
-      <TextField
-        id="standard-search"
-        label="Search field"
-        type="search"
-        className={classes.textField}
-        margin="normal"
-      />
-      <TextField
-        id="standard-select-currency"
-        select
-        label="Select"
-        className={classes.textField}
-        value={values.currency}
-        onChange={handleChange('currency')}
-        SelectProps={{
-          MenuProps: {
-            className: classes.menu,
-          },
-        }}
-        helperText="Please select your currency"
-        margin="normal"
-      >
-        {currencies.map(option => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-      
     </form>
   );
 }
