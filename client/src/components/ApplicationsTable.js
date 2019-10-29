@@ -75,6 +75,10 @@ const ApplicationsTable = () => {
     setApplications([]);
   };
 
+
+  // List of header
+  const headers = ["Position", "Application Data", "Status", "Response", "How Far", "Portal Link", "Job Board"];
+
   // returns the list of application
   const listApplications = (
     <div className={classes.appList}>
@@ -83,13 +87,10 @@ const ApplicationsTable = () => {
           <TableHead>
             <TableRow>
               <TableCell>Company</TableCell>
-              <TableCell align="right">Position</TableCell>
-              <TableCell align="right">Aplication Date</TableCell>
-              <TableCell align="right">Status</TableCell>
-              <TableCell align="right">Response</TableCell>
-              <TableCell align="right">How far</TableCell>
-              <TableCell align="right">Portal Link</TableCell>
-              <TableCell align="right">Job Board</TableCell>
+              {/* Iterates through the headers array to create headers */}
+              {headers.map(header => (
+                <TableCell key={header} align="right">{header}</TableCell>
+              ))}
             </TableRow>
           </TableHead>
 
