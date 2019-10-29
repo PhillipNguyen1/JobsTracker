@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
+import userForm from 'react-hook-from';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
@@ -42,15 +42,15 @@ export default function CreateApplication() {
     salary: ""
   });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(formState)
-    // const data = JSON.stringify(mapValues(fields, x => x.input.value), null, 2);
-    // alert(data);
-  }
+  function handleSubmit (e) {
+  
+    console.log(e);
+  };
 
 
   return (
+    <div style={{ padding: 16, margin: 'auto', maxWidth: 1500 }}>
+      
     <form
       className={classes.container}
       noValidate
@@ -70,7 +70,6 @@ export default function CreateApplication() {
         id="standard-uncontrolled"
         label="Position"
         defaultValue=""
-        value={formState.position}
         className={classes.textField}
         margin="normal"
       />
@@ -79,7 +78,6 @@ export default function CreateApplication() {
         id="standard-required"
         label="Aplpication Date"
         defaultValue=""
-        value={formState.applicationDate}
         className={classes.textField}
         margin="normal"
       />
@@ -87,7 +85,6 @@ export default function CreateApplication() {
         id="standard-uncontrolled"
         label="Status"
         defaultValue=""
-        value={formState.status}
         className={classes.textField}
         margin="normal"
       />
@@ -95,7 +92,6 @@ export default function CreateApplication() {
         id="standard-uncontrolled"
         label="Response?"
         defaultValue=""
-        value={formState.response}
         className={classes.textField}
         margin="normal"
       />
@@ -103,7 +99,6 @@ export default function CreateApplication() {
         id="standard-uncontrolled"
         label="How Far?"
         defaultValue=""
-        value={formState.howFar}
         className={classes.textField}
         margin="normal"
       />
@@ -111,7 +106,6 @@ export default function CreateApplication() {
         id="standard-read-only-input"
         label="Portal Link"
         defaultValue=""
-        value={formState.portalLink}
         className={classes.textField}
         margin="normal"
       />
@@ -119,7 +113,6 @@ export default function CreateApplication() {
         id="standard-dense"
         label="Job Board"
         defaultValue=""
-        value={formState.jobBoard}
         className={clsx(classes.textField, classes.dense)}
         margin="dense"
       />
@@ -128,7 +121,6 @@ export default function CreateApplication() {
         label="Salary"
         type="number"
         defaultValue=""
-        value={formState.salary}
         className={classes.textField}
         InputLabelProps={{
           shrink: true
@@ -145,5 +137,6 @@ export default function CreateApplication() {
       Submit
       </Button>
     </form>
+    </div>
   );
 }
