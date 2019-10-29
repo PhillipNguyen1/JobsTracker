@@ -44,7 +44,7 @@ const ApplicationsTable = () => {
   // List of header
   const headers = [
     "Position",
-    "Application Data",
+    "Application Date",
     "Status",
     "Response",
     "How Far",
