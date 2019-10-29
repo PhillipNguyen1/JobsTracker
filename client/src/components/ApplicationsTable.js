@@ -82,6 +82,12 @@ const ApplicationsTable = () => {
   // returns the list of application
   const listApplications = (
     <div className={classes.appList}>
+      
+    </div>
+  );
+
+  return (
+    <div>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -110,42 +116,6 @@ const ApplicationsTable = () => {
           </TableBody>
         </Table>
       </Paper>
-    </div>
-  );
-
-  return (
-    <div>
-      {/* Displays list of applications in console */}
-      <Button
-        variant="contained"
-        className={classes.button}
-        onClick={handleListApplications} // onClick will fire an event and call the handleListApplications() function
-      >
-        Toggle Application List
-      </Button>
-
-      {/* Adds application to hook state */}
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        onClick={handleNewApplication} // Different syntax but does the same thing as the previous onClick. This calls the handleNewApplication() function
-      >
-        Add Application
-      </Button>
-
-      {/* Adds application to hook state */}
-      <Button
-        variant="contained"
-        color="secondary"
-        className={classes.button}
-        onClick={handleClear} // Different syntax but does the same thing as the previous onClick. This calls the addApplication() function
-      >
-        Clear Applications
-      </Button>
-
-      {/* if isVisible, display list of applications. Else, display nothing */}
-      {isVisible ? listApplications : null}
     </div>
   );
 };
