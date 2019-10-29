@@ -3,13 +3,16 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
-
+import Button from "@material-ui/core/Button";
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
+  },
+  button: {
+    margin: theme.spacing(1)
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -27,13 +30,38 @@ const useStyles = makeStyles(theme => ({
 export default function CreateApplication() {
   const classes = useStyles();
 
+  const [formState, setformState] = useState({
+    companyName: "",
+    position: "",
+    applicationDate: "",
+    status: "",
+    response: "",
+    howFar: "",
+    portalLink: "",
+    jobBoard: "",
+    salary: ""
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formState)
+    // const data = JSON.stringify(mapValues(fields, x => x.input.value), null, 2);
+    // alert(data);
+  }
+
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <form
+      className={classes.container}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit}
+    >
       <TextField
         required
         id="standard-name"
         label="Company Name"
+        // value={formState.companyName}
         className={classes.textField}
         margin="normal"
       />
@@ -41,7 +69,8 @@ export default function CreateApplication() {
         required
         id="standard-uncontrolled"
         label="Position"
-        defaultValue = ""
+        defaultValue=""
+        value={formState.position}
         className={classes.textField}
         margin="normal"
       />
@@ -49,42 +78,48 @@ export default function CreateApplication() {
         required
         id="standard-required"
         label="Aplpication Date"
-        defaultValue = ""
+        defaultValue=""
+        value={formState.applicationDate}
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-uncontrolled"
         label="Status"
-        defaultValue = ""
+        defaultValue=""
+        value={formState.status}
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-uncontrolled"
         label="Response?"
-        defaultValue = ""
+        defaultValue=""
+        value={formState.response}
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-uncontrolled"
         label="How Far?"
-        defaultValue = ""
+        defaultValue=""
+        value={formState.howFar}
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-read-only-input"
         label="Portal Link"
-        defaultValue = ""
+        defaultValue=""
+        value={formState.portalLink}
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-dense"
         label="Job Board"
-        defaultValue = ""
+        defaultValue=""
+        value={formState.jobBoard}
         className={clsx(classes.textField, classes.dense)}
         margin="dense"
       />
@@ -92,13 +127,23 @@ export default function CreateApplication() {
         id="standard-number"
         label="Salary"
         type="number"
-        defaultValue = ""
+        defaultValue=""
+        value={formState.salary}
         className={classes.textField}
         InputLabelProps={{
-          shrink: true,
+          shrink: true
         }}
         margin="normal"
       />
+
+      <Button 
+      variant="contained"
+      color="primary"
+      className={classes.button}
+      onClick={handleSubmit}
+      >
+      Submit
+      </Button>
     </form>
   );
 }
