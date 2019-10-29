@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import userForm from 'react-hook-from';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 export default function CreateApplication() {
   const classes = useStyles();
 
+
   const [formState, setformState] = useState({
     companyName: "",
     position: "",
@@ -42,11 +43,10 @@ export default function CreateApplication() {
     salary: ""
   });
 
-  function handleSubmit (e) {
-  
-    console.log(e);
-  };
-
+  function handleSubmit (event){
+    event.preventDefault();
+    console.log(event)
+  }
 
   return (
     <div style={{ padding: 16, margin: 'auto', maxWidth: 1500 }}>
@@ -57,11 +57,11 @@ export default function CreateApplication() {
       autoComplete="off"
       onSubmit={handleSubmit}
     >
+      {/* <input name="ASDA" ref={register}/> */}
       <TextField
         required
         id="standard-name"
         label="Company Name"
-        // value={formState.companyName}
         className={classes.textField}
         margin="normal"
       />
@@ -69,7 +69,6 @@ export default function CreateApplication() {
         required
         id="standard-uncontrolled"
         label="Position"
-        defaultValue=""
         className={classes.textField}
         margin="normal"
       />
@@ -77,42 +76,36 @@ export default function CreateApplication() {
         required
         id="standard-required"
         label="Aplpication Date"
-        defaultValue=""
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-uncontrolled"
         label="Status"
-        defaultValue=""
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-uncontrolled"
         label="Response?"
-        defaultValue=""
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-uncontrolled"
         label="How Far?"
-        defaultValue=""
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-read-only-input"
         label="Portal Link"
-        defaultValue=""
         className={classes.textField}
         margin="normal"
       />
       <TextField
         id="standard-dense"
         label="Job Board"
-        defaultValue=""
         className={clsx(classes.textField, classes.dense)}
         margin="dense"
       />
@@ -120,7 +113,6 @@ export default function CreateApplication() {
         id="standard-number"
         label="Salary"
         type="number"
-        defaultValue=""
         className={classes.textField}
         InputLabelProps={{
           shrink: true
@@ -131,8 +123,8 @@ export default function CreateApplication() {
       <Button 
       variant="contained"
       color="primary"
+      type="submit"
       className={classes.button}
-      onClick={handleSubmit}
       >
       Submit
       </Button>
