@@ -132,7 +132,6 @@ export default function CreateApplication() {
           label="How Far?"
           name="howFar"
           onChange={handleChange}
-          margin="normal"
           className={classes.textField}
           value={formState.howFar}
           margin="normal"
@@ -142,7 +141,6 @@ export default function CreateApplication() {
           label="Portal Link"
           name="portalLink"
           onChange={handleChange}
-          margin="normal"
           className={classes.textField}
           value={formState.portalLink}
           margin="normal"
