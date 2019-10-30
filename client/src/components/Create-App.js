@@ -179,7 +179,7 @@ export default function CreateApplication() {
           type="submit"
           className={classes.button}
         >
-          Submit
+        Create Application
         </Button>
       </form>
     </div>
