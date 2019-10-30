@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 export default function CreateApplication() {
   const classes = useStyles();
 
-  const [formState, setformState] = useState({
+  const initialformState = {
     companyName: "",
     position: "",
     applicationDate: "",
@@ -40,14 +40,30 @@ export default function CreateApplication() {
     portalLink: "",
     jobBoard: "",
     salary: ""
-  });
+  };
+
+  const [formState, setformState] = useState(initialformState);
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    axios.post("http://localhost:4000/api/applications", formState).then(res => {
-      console.log(res.data);
-    });
+    axios
+      .post("http://localhost:4000/api/applications", formState)
+      .then(res => {
+        console.log(res.data);
+      });
+    
+    handleReset();
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setformState({ ...formState, [name]: value });
+  }
+
+  function handleReset() {
+    setformState(initialformState);
   }
 
   return (
@@ -60,126 +76,89 @@ export default function CreateApplication() {
       >
         <TextField
           required
-          id="standard-name"
+          id="form-company-name"
           name="companyName"
           label="Company Name"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
           className={classes.textField}
+          value={formState.companyName}
           margin="normal"
         />
         <TextField
           required
-          id="standard-uncontrolled"
+          id="form-position"
           label="Position"
           className={classes.textField}
           name="position"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
+          value={formState.position}
           margin="normal"
         />
         <TextField
           required
-          id="standard-required"
-          label="Aplpication Date"
+          id="form-application-date"
+          label="Application Date"
           className={classes.textField}
           name="applicationDate"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
+          value={formState.applicationDate}
           margin="normal"
         />
         <TextField
-          id="standard-uncontrolled"
+          id="fomr-status"
           label="Status"
           className={classes.textField}
           name="status"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
+          value={formState.status}
           margin="normal"
         />
         <TextField
-          id="standard-uncontrolled"
+          id="form-response"
           label="Response?"
           className={classes.textField}
           name="response"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
+          value={formState.response}
           margin="normal"
         />
         <TextField
-          id="standard-uncontrolled"
+          id="form-how-far"
           label="How Far?"
           name="howFar"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
           margin="normal"
           className={classes.textField}
+          value={formState.howFar}
           margin="normal"
         />
         <TextField
-          id="standard-read-only-input"
+          id="form-portal-link"
           label="Portal Link"
           name="portalLink"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
           margin="normal"
           className={classes.textField}
+          value={formState.portalLink}
           margin="normal"
         />
         <TextField
-          id="standard-dense"
+          id="form-job-board"
           label="Job Board"
           name="jobBoard"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
           margin="normal"
           className={clsx(classes.textField, classes.dense)}
-          margin="dense"
+          value={formState.jobBoard}
         />
         <TextField
-          id="standard-number"
+          id="form-salary"
           label="Salary"
           type="number"
           name="salary"
-          onChange={event =>
-            setformState({
-              ...formState,
-              [event.target.name]: event.target.value
-            })
-          }
+          onChange={handleChange}
           className={classes.textField}
+          value={formState.salary}
           InputLabelProps={{
             shrink: true
           }}
