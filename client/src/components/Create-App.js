@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import axios from "axios";
 
@@ -52,7 +53,7 @@ export default function CreateApplication() {
       .then(res => {
         console.log(res.data);
       });
-    
+
     handleReset();
   }
 
@@ -95,13 +96,17 @@ export default function CreateApplication() {
           margin="normal"
         />
         <TextField
-          required
-          id="form-application-date"
+          id="date"
           label="Application Date"
+          type="date"
+          // defaultValue={}
           className={classes.textField}
           name="applicationDate"
           onChange={handleChange}
           value={formState.applicationDate}
+          InputLabelProps={{
+            shrink: true
+          }}
           margin="normal"
         />
         <TextField
@@ -156,6 +161,9 @@ export default function CreateApplication() {
           label="Salary"
           type="number"
           name="salary"
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
           onChange={handleChange}
           className={classes.textField}
           value={formState.salary}
