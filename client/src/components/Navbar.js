@@ -22,9 +22,8 @@ const Navbar = () => {
       <AppBar position="static">
         <ToolBar>
           <Typography variant="subtitle1" color="inherit" className={classes.title}>
-            React & Material UI Sample Yaba
+            Job Tracker
           </Typography>
-
           <Button color="inherit">Login</Button>
         </ToolBar>
       </AppBar>
