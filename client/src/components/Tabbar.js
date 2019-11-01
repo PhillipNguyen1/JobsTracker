@@ -65,7 +65,7 @@ export default function Tabbar() {
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
-  
+
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -75,18 +75,15 @@ export default function Tabbar() {
             onChange={handleChange}
             aria-label="nav tabs example"
           >
-            <LinkTab label="Applications" href="/drafts" {...a11yProps(0)} />
-            <LinkTab label="Create Entry" href="/trash" {...a11yProps(1)} />
-            <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} />
+            <LinkTab label="Applications" {...a11yProps(0)} />
+            <LinkTab label="Create Entry" {...a11yProps(1)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
           <ApplicationsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <CreateApplication/>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
+          <CreateApplication />
         </TabPanel>
       </div>
     );
