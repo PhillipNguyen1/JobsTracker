@@ -28,6 +28,8 @@ const ApplicationsTable = () => {
   // applications is an array of objects
   const [applications, setApplications] = useState([]);
 
+  const [ count, setCount ] = useState(0);
+
   // This async function gets called whenever the page loads and will update the data accordingly
   async function fetchData() {
     const result = await axios("http://localhost:4000/api/applications");
@@ -40,7 +42,7 @@ const ApplicationsTable = () => {
   }
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [count]);
 
   // List of header
   const headers = [
@@ -54,41 +56,6 @@ const ApplicationsTable = () => {
     "Actions"
   ];
 
-<<<<<<< Updated upstream
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Company</TableCell>
-            {/* Iterates through the headers array to create headers */}
-            {headers.map(header => (
-              <TableCell key={header} align="right">
-                {header}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {applications.map(app => (
-            <TableRow key={app.companyName}>
-              <TableCell component="th" scope="row">
-                {app.companyName}
-              </TableCell>
-              <TableCell align="right">{app.position}</TableCell>
-              <TableCell align="right">{app.applicationDate}</TableCell>
-              <TableCell align="right">{app.status}</TableCell>
-              <TableCell align="right">{app.response}</TableCell>
-              <TableCell align="right">{app.howFar}</TableCell>
-              <TableCell align="right">{app.portalLink}</TableCell>
-              <TableCell align="right">{app.JobBoard}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-=======
   function increment() {
     setCount(count + 1);
   };
@@ -141,7 +108,6 @@ const ApplicationsTable = () => {
         </Table>
       </Paper>
     </div>
->>>>>>> Stashed changes
   );
 };
 
