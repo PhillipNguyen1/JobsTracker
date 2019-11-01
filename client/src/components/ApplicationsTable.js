@@ -13,12 +13,15 @@ import axios from "axios";
 // I think this is called CSS in JS if you want to look it up
 // makeStyles & theme are a material UI thing
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1)
+  buttonEdit: {
+    marginRight: theme.spacing(1),
+  },
+  buttonDelete: {
+    marginLeft: theme.spacing(1),
   },
   appList: {
     margin: theme.spacing(1)
-  }
+  },
 }));
 
 // Functional component
@@ -97,10 +100,10 @@ const ApplicationsTable = () => {
                 <TableCell align="right">{app.howFar}</TableCell>
                 <TableCell align="right">{app.portalLink}</TableCell>
                 <TableCell align="right">{app.JobBoard}</TableCell>
-                <TableCell align="right">
-                {<Button onClick={() => {console.log(app._id)}}>Edit</Button>}
+                <TableCell key={app._id} align="right">
+                {<Button onClick={() => {console.log(app._id)}} className={classes.buttonEdit}>Edit</Button>}
                 |
-                {<Button onClick={() => {deleteApp(app._id); }} >Delete</Button>}
+                {<Button onClick={() => {deleteApp(app._id); }} className={classes.buttonDelete} color="secondary">Delete</Button>}
                 </TableCell>
               </TableRow>
             ))}
