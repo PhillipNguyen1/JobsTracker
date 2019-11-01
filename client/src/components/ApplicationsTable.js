@@ -86,7 +86,7 @@ const ApplicationsTable = () => {
 
           <TableBody>
             {applications.map(app => (
-              <TableRow key={app.companyName}>
+              <TableRow key={app._id}>
                 <TableCell component="th" scope="row">
                   {app.companyName}
                 </TableCell>
@@ -97,7 +97,7 @@ const ApplicationsTable = () => {
                 <TableCell align="right">{app.howFar}</TableCell>
                 <TableCell align="right">{app.portalLink}</TableCell>
                 <TableCell align="right">{app.JobBoard}</TableCell>
-                <TableCell key={app._id} align="right">
+                <TableCell align="right">
                 {<Button onClick={() => {console.log(app._id)}}>Edit</Button>}
                 |
                 {<Button onClick={() => {deleteApp(app._id); }} >Delete</Button>}

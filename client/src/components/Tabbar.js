@@ -61,9 +61,6 @@ const useStyles = makeStyles(theme => ({
 export default function Tabbar() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
-
-    const kimm = require('../Images/061118-kim-jong-un-feature.jpg');
-    const slap = require('../Images/p8xoszwqtwp31.png');
   
     const handleChange = (event, newValue) => {
       setValue(newValue);
@@ -87,11 +84,9 @@ export default function Tabbar() {
           <ApplicationsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <img src={slap} alt="hentai"/>
           <CreateApplication/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <img src={kimm} alt="lord commander"/>
         </TabPanel>
       </div>
     );

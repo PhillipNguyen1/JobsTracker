@@ -46,7 +46,7 @@ export default function CreateApplication() {
   const [formState, setformState] = useState(initialformState);
 
   function handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     axios
       .post("http://localhost:4000/api/applications", formState)
@@ -99,7 +99,6 @@ export default function CreateApplication() {
           id="date"
           label="Application Date"
           type="date"
-          // defaultValue={}
           className={classes.textField}
           name="applicationDate"
           onChange={handleChange}
