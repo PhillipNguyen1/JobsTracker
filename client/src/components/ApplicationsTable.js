@@ -6,15 +6,19 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 import axios from "axios";
-import LoadingSpinner from '../shared/LoadingSpinner';
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 // material UI styling. similar to CSS
 // I think this is called CSS in JS if you want to look it up
 // makeStyles & theme are a material UI thing
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1)
+  buttonEdit: {
+    marginRight: theme.spacing(1)
+  },
+  buttonDelete: {
+    marginLeft: theme.spacing(1)
   },
   appList: {
     margin: theme.spacing(1)
@@ -29,11 +33,14 @@ function ApplicationsTable(props) {
   const [applications, setApplications] = useState([]);
   const url = "http://localhost:4000/api/applications";
 
+  const [count, setCount] = useState(0);
+
   // This async function gets called whenever the page loads and will update the data accordingly
   async function fetchData() {
     console.log("FETCHING DATA");
     const result = await axios(url);
     try {
+      console.log(result.data);
       setApplications(result.data);
       setLoaded(true);
     } catch (err) {
@@ -45,7 +52,7 @@ function ApplicationsTable(props) {
   // Makes API request
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [count]);
 
   // List of header
   const headers = [
@@ -55,11 +62,24 @@ function ApplicationsTable(props) {
     "Response",
     "How Far",
     "Portal Link",
-    "Job Board"
+    "Job Board",
+    "Actions"
   ];
 
+  const increment = () => {
+    setCount(count + 1);
+  }
+
+  const deleteApp = async id => {
+    const res = await axios.delete(
+      `http://localhost:4000/api/applications/${id}`
+    );
+    console.log(res);
+    setTimeout(increment(), 200);
+  };
+
   // renders loading spinner
-  const renderSpinner = (LoadingSpinner());
+  const renderSpinner = LoadingSpinner();
 
   // renders table
   const renderTable = (
@@ -79,7 +99,7 @@ function ApplicationsTable(props) {
 
         <TableBody>
           {applications.map(app => (
-            <TableRow key={app.companyName}>
+            <TableRow key={app._id}>
               <TableCell component="th" scope="row">
                 {app.companyName}
               </TableCell>
@@ -90,19 +110,39 @@ function ApplicationsTable(props) {
               <TableCell align="right">{app.howFar}</TableCell>
               <TableCell align="right">{app.portalLink}</TableCell>
               <TableCell align="right">{app.JobBoard}</TableCell>
+              <TableCell key={app._id} align="right">
+                {
+                  <Button
+                    onClick={() => {
+                      console.log(app._id);
+                    }}
+                    className={classes.buttonEdit}
+                  >
+                    Edit
+                  </Button>
+                }
+                |
+                {
+                  <Button
+                    onClick={() => {
+                      deleteApp(app._id);
+                    }}
+                    className={classes.buttonDelete}
+                    color="secondary"
+                  >
+                    Delete
+                  </Button>
+                }
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-
-      {console.log(applications)}
     </Paper>
   );
 
   // Conditionally renders table or loading spinner
-  return (
-    isLoaded ? renderTable : renderSpinner
-  );
+  return isLoaded ? renderTable : renderSpinner;
 }
 
 export default ApplicationsTable;
