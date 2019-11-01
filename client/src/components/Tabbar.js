@@ -63,7 +63,6 @@ export default function Tabbar() {
     const [value, setValue] = React.useState(0);
 
     const kimm = require('../Images/061118-kim-jong-un-feature.jpg');
-    const slap = require('../Images/p8xoszwqtwp31.png');
   
     const handleChange = (event, newValue) => {
       setValue(newValue);
@@ -78,16 +77,15 @@ export default function Tabbar() {
             onChange={handleChange}
             aria-label="nav tabs example"
           >
-            <LinkTab label="Applications" href="/drafts" {...a11yProps(0)} />
-            <LinkTab label="Create Entry" href="/trash" {...a11yProps(1)} />
-            <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} />
+            <LinkTab label="Applications" {...a11yProps(0)} />
+            <LinkTab label="Create Entry" {...a11yProps(1)} />
+            <LinkTab label="Page Three"   {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
           <ApplicationsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <img src={slap} alt="hentai"/>
           <CreateApplication/>
         </TabPanel>
         <TabPanel value={value} index={2}>

@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 
 import axios from "axios";
+import { Button } from "@material-ui/core";
 
 // material UI styling. similar to CSS
 // I think this is called CSS in JS if you want to look it up
@@ -27,9 +28,11 @@ const ApplicationsTable = () => {
 
   // applications is an array of objects
   const [applications, setApplications] = useState([]);
+  const [count, setCount] = useState(0);
 
   // This async function gets called whenever the page loads and will update the data accordingly
   async function fetchData() {
+    console.log("FETCHING DATA");
     const result = await axios("http://localhost:4000/api/applications");
     try {
       setApplications(result.data);
@@ -39,7 +42,7 @@ const ApplicationsTable = () => {
   }
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [count]);
 
   // List of header
   const headers = [
@@ -52,39 +55,46 @@ const ApplicationsTable = () => {
     "Job Board"
   ];
 
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Company</TableCell>
-            {/* Iterates through the headers array to create headers */}
-            {headers.map(header => (
-              <TableCell key={header} align="right">
-                {header}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
+  const increment = () => {
+    setCount(count + 1);
+  };
 
-        <TableBody>
-          {applications.map(app => (
-            <TableRow key={app.companyName}>
-              <TableCell component="th" scope="row">
-                {app.companyName}
-              </TableCell>
-              <TableCell align="right">{app.position}</TableCell>
-              <TableCell align="right">{app.applicationDate}</TableCell>
-              <TableCell align="right">{app.status}</TableCell>
-              <TableCell align="right">{app.response}</TableCell>
-              <TableCell align="right">{app.howFar}</TableCell>
-              <TableCell align="right">{app.portalLink}</TableCell>
-              <TableCell align="right">{app.JobBoard}</TableCell>
+  return (
+    <div>
+      <Paper className={classes.root}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Company</TableCell>
+              {/* Iterates through the headers array to create headers */}
+              {headers.map(header => (
+                <TableCell key={header} align="right">
+                  {header}
+                </TableCell>
+              ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+          </TableHead>
+
+          <TableBody>
+            {applications.map(app => (
+              <TableRow key={app.companyName}>
+                <TableCell component="th" scope="row">
+                  {app.companyName}
+                </TableCell>
+                <TableCell align="right">{app.position}</TableCell>
+                <TableCell align="right">{app.applicationDate}</TableCell>
+                <TableCell align="right">{app.status}</TableCell>
+                <TableCell align="right">{app.response}</TableCell>
+                <TableCell align="right">{app.howFar}</TableCell>
+                <TableCell align="right">{app.portalLink}</TableCell>
+                <TableCell align="right">{app.JobBoard}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+      <Button onClick={increment}>Count pressed {count} times</Button>
+    </div>
   );
 };
 
