@@ -6,8 +6,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-
 import axios from "axios";
+import LoadingSpinner from '../shared/LoadingSpinner';
 
 // material UI styling. similar to CSS
 // I think this is called CSS in JS if you want to look it up
@@ -22,21 +22,27 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Functional component
-const ApplicationsTable = () => {
+// recieve list of applications as props
+function ApplicationsTable(props) {
   const classes = useStyles(); // This is how we can access the styling. ex) "classes.button"
-
-  // applications is an array of objects
+  const [isLoaded, setLoaded] = useState(false);
   const [applications, setApplications] = useState([]);
+  const url = "http://localhost:4000/api/applications";
 
   // This async function gets called whenever the page loads and will update the data accordingly
   async function fetchData() {
-    const result = await axios("http://localhost:4000/api/applications");
+    console.log("FETCHING DATA");
+    const result = await axios(url);
     try {
       setApplications(result.data);
+      setLoaded(true);
     } catch (err) {
       console.error(err);
+      setLoaded(false);
     }
   }
+
+  // Makes API request
   useEffect(() => {
     fetchData();
   }, []);
@@ -52,7 +58,11 @@ const ApplicationsTable = () => {
     "Job Board"
   ];
 
-  return (
+  // renders loading spinner
+  const renderSpinner = (LoadingSpinner());
+
+  // renders table
+  const renderTable = (
     <Paper className={classes.root}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -84,8 +94,15 @@ const ApplicationsTable = () => {
           ))}
         </TableBody>
       </Table>
+
+      {console.log(applications)}
     </Paper>
   );
-};
+
+  // Conditionally renders table or loading spinner
+  return (
+    isLoaded ? renderTable : renderSpinner
+  );
+}
 
 export default ApplicationsTable;

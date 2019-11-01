@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import InputAdornment from '@material-ui/core/InputAdornment';
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 import axios from "axios";
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CreateApplication() {
+export default function CreateApplication(props) {
   const classes = useStyles();
 
   const initialformState = {
@@ -45,16 +45,19 @@ export default function CreateApplication() {
 
   const [formState, setformState] = useState(initialformState);
 
+  function invalidForm() {
+    const { companyName, position } = formState;
+    return (!companyName || !position);
+  }
+
   function handleSubmit(event) {
-    event.preventDefault();
-
-    axios
-      .post("http://localhost:4000/api/applications", formState)
-      .then(res => {
-        console.log(res.data);
-      });
-
-    handleReset();
+    if (invalidForm()) {
+      console.log("Invalid form");
+      event.preventDefault();
+    } else {
+      axios.post("http://localhost:4000/api/applications", formState);
+      handleReset();
+    }
   }
 
   function handleChange(event) {
@@ -96,10 +99,10 @@ export default function CreateApplication() {
           margin="normal"
         />
         <TextField
+          required
           id="date"
           label="Application Date"
           type="date"
-          // defaultValue={}
           className={classes.textField}
           name="applicationDate"
           onChange={handleChange}
@@ -110,7 +113,8 @@ export default function CreateApplication() {
           margin="normal"
         />
         <TextField
-          id="fomr-status"
+          required
+          id="form-status"
           label="Status"
           className={classes.textField}
           name="status"
@@ -160,7 +164,7 @@ export default function CreateApplication() {
           type="number"
           name="salary"
           InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            startAdornment: <InputAdornment position="start">$</InputAdornment>
           }}
           onChange={handleChange}
           className={classes.textField}
@@ -177,7 +181,7 @@ export default function CreateApplication() {
           type="submit"
           className={classes.button}
         >
-        Create Application
+          Create Application
         </Button>
       </form>
     </div>
