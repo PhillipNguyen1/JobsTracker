@@ -62,12 +62,10 @@ export default function Tabbar() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
-    const kimm = require('../Images/061118-kim-jong-un-feature.jpg');
-  
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
-  
+
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -79,17 +77,13 @@ export default function Tabbar() {
           >
             <LinkTab label="Applications" {...a11yProps(0)} />
             <LinkTab label="Create Entry" {...a11yProps(1)} />
-            <LinkTab label="Page Three"   {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
           <ApplicationsTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <CreateApplication/>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <img src={kimm} alt="lord commander"/>
+          <CreateApplication />
         </TabPanel>
       </div>
     );
