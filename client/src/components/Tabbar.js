@@ -6,8 +6,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import ApplicationsTable from './ApplicationsTable';
-import CreateApplication from './Create-App';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -58,13 +56,9 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-export default function Tabbar() {
+export default function Tabbar(props) {
     const classes = useStyles();
-    const [value, setValue] = React.useState(0);
-  
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
-    };
+    const { ApplicationsTable, CreateApplication, value, handleTabChange} = props;
 
     return (
       <div className={classes.root}>
@@ -72,7 +66,7 @@ export default function Tabbar() {
           <Tabs
             variant="fullWidth"
             value={value}
-            onChange={handleChange}
+            onChange={handleTabChange}
             aria-label="nav tabs example"
           >
             <LinkTab label="Applications" {...a11yProps(0)} />
@@ -80,10 +74,10 @@ export default function Tabbar() {
           </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-          <ApplicationsTable />
+          {ApplicationsTable}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <CreateApplication />
+          {CreateApplication}
         </TabPanel>
       </div>
     );

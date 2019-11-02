@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -7,7 +7,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import LoadingSpinner from "../shared/LoadingSpinner";
 
 // material UI styling. similar to CSS
@@ -29,30 +28,7 @@ const useStyles = makeStyles(theme => ({
 // recieve list of applications as props
 function ApplicationsTable(props) {
   const classes = useStyles(); // This is how we can access the styling. ex) "classes.button"
-  const [isLoaded, setLoaded] = useState(false);
-  const [applications, setApplications] = useState([]);
-  const url = "http://localhost:4000/api/applications";
-
-  const [count, setCount] = useState(0);
-
-  // This async function gets called whenever the page loads and will update the data accordingly
-  async function fetchData() {
-    console.log("FETCHING DATA");
-    const result = await axios(url);
-    try {
-      console.log(result.data);
-      setApplications(result.data);
-      setLoaded(true);
-    } catch (err) {
-      console.error(err);
-      setLoaded(false);
-    }
-  }
-
-  // Makes API request
-  useEffect(() => {
-    fetchData();
-  }, [count]);
+  const { applications, isLoaded, handleDelete } = props;
 
   // List of header
   const headers = [
@@ -65,18 +41,6 @@ function ApplicationsTable(props) {
     "Job Board",
     "Actions"
   ];
-
-  const increment = () => {
-    setCount(count + 1);
-  }
-
-  const deleteApp = async id => {
-    const res = await axios.delete(
-      `http://localhost:4000/api/applications/${id}`
-    );
-    console.log(res);
-    setTimeout(increment(), 200);
-  };
 
   // renders loading spinner
   const renderSpinner = LoadingSpinner();
@@ -125,7 +89,7 @@ function ApplicationsTable(props) {
                 {
                   <Button
                     onClick={() => {
-                      deleteApp(app._id);
+                      handleDelete(app._id);
                     }}
                     className={classes.buttonDelete}
                     color="secondary"

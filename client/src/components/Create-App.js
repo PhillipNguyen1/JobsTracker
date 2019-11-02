@@ -5,8 +5,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-import axios from "axios";
-
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -30,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function CreateApplication(props) {
   const classes = useStyles();
+  const { handleCreate } = props; 
 
   const initialformState = {
     companyName: "",
@@ -50,12 +49,13 @@ export default function CreateApplication(props) {
     return (!companyName || !position);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit (event) {
+    event.preventDefault();
+
     if (invalidForm()) {
       console.log("Invalid form");
-      event.preventDefault();
     } else {
-      axios.post("http://localhost:4000/api/applications", formState);
+      handleCreate(formState);
       handleReset();
     }
   }
