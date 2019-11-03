@@ -45,17 +45,10 @@ const CreateApplication = (props) => {
 
   const [formState, setformState] = useState(initialformState);
 
-<<<<<<< HEAD
-  const invalidForm = () => {
-    const { companyName, position } = formState;
-    return !companyName || !position;
-  };
-=======
   function invalidForm() {
     const { companyName, position, applicationDate } = formState;
     return (!companyName || !position || !applicationDate);
   }
->>>>>>> 6aba7a5bece70574c27fd4d89d754dfe370517ad
 
   // Handles user input
   const handleChange = (event) => {
