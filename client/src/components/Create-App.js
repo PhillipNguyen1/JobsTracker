@@ -5,8 +5,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-import axios from "axios";
-
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -28,9 +26,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CreateApplication(props) {
+const CreateApplication = (props) => {
   const classes = useStyles();
+  const { handleCreate } = props;
 
+  // intial state of form
   const initialformState = {
     companyName: "",
     position: "",
@@ -46,32 +46,35 @@ export default function CreateApplication(props) {
   const [formState, setformState] = useState(initialformState);
 
   function invalidForm() {
-    const { companyName, position } = formState;
-    return (!companyName || !position);
+    const { companyName, position, applicationDate } = formState;
+    return (!companyName || !position || !applicationDate);
   }
 
-  function handleSubmit(event) {
-    if (invalidForm()) {
-      console.log("Invalid form");
-      event.preventDefault();
-    } else {
-      axios.post("http://localhost:4000/api/applications", formState);
-      handleReset();
-    }
-  }
-
-  function handleChange(event) {
+  // Handles user input
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
     setformState({ ...formState, [name]: value });
-  }
+  };
 
-  function handleReset() {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (invalidForm()) {
+      window.alert("Invalid form");
+    } else {
+      handleCreate(formState);
+      handleReset();
+    }
+  };
+
+  const handleReset = () => {
     setformState(initialformState);
-  }
+  };
 
   return (
-    <div style={{ padding: 16, margin: "auto", maxWidth: 1500 }}>
+    <div>
+      <h1>Create an Application</h1>
       <form
         className={classes.container}
         noValidate
@@ -100,7 +103,7 @@ export default function CreateApplication(props) {
         />
         <TextField
           required
-          id="date"
+          id="fomr-date"
           label="Application Date"
           type="date"
           className={classes.textField}
@@ -186,4 +189,6 @@ export default function CreateApplication(props) {
       </form>
     </div>
   );
-}
+};
+
+export default CreateApplication;

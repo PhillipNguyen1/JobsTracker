@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import Tabbar from './components/Tabbar';
+import UserDashboard from './components/User-Dashboard';
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Tabbar/>
+      <UserDashboard />
     </div>
   );
 }
