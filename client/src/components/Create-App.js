@@ -45,15 +45,15 @@ export default function CreateApplication(props) {
   const [formState, setformState] = useState(initialformState);
 
   function invalidForm() {
-    const { companyName, position } = formState;
-    return (!companyName || !position);
+    const { companyName, position, applicationDate } = formState;
+    return (!companyName || !position || !applicationDate);
   }
 
   async function handleSubmit (event) {
     event.preventDefault();
 
     if (invalidForm()) {
-      console.log("Invalid form");
+      window.alert("Invalid form");
     } else {
       handleCreate(formState);
       handleReset();
