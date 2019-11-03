@@ -73,7 +73,8 @@ const CreateApplication = (props) => {
   };
 
   return (
-    <div style={{ padding: 16, margin: "auto", maxWidth: 1500 }}>
+    <div>
+      <h1>Create an Application</h1>
       <form
         className={classes.container}
         noValidate
