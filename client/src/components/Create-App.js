@@ -26,10 +26,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CreateApplication(props) {
+const CreateApplication = (props) => {
   const classes = useStyles();
-  const { handleCreate } = props; 
+  const { handleCreate } = props;
 
+  // intial state of form
   const initialformState = {
     companyName: "",
     position: "",
@@ -44,12 +45,19 @@ export default function CreateApplication(props) {
 
   const [formState, setformState] = useState(initialformState);
 
-  function invalidForm() {
+  const invalidForm = () => {
     const { companyName, position } = formState;
-    return (!companyName || !position);
-  }
+    return !companyName || !position;
+  };
 
-  async function handleSubmit (event) {
+  // Handles user input
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setformState({ ...formState, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (invalidForm()) {
@@ -58,17 +66,11 @@ export default function CreateApplication(props) {
       handleCreate(formState);
       handleReset();
     }
-  }
+  };
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-
-    setformState({ ...formState, [name]: value });
-  }
-
-  function handleReset() {
+  const handleReset = () => {
     setformState(initialformState);
-  }
+  };
 
   return (
     <div style={{ padding: 16, margin: "auto", maxWidth: 1500 }}>
@@ -100,7 +102,7 @@ export default function CreateApplication(props) {
         />
         <TextField
           required
-          id="date"
+          id="fomr-date"
           label="Application Date"
           type="date"
           className={classes.textField}
@@ -186,4 +188,6 @@ export default function CreateApplication(props) {
       </form>
     </div>
   );
-}
+};
+
+export default CreateApplication;

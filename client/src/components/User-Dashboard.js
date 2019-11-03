@@ -4,19 +4,13 @@ import ApplicationsTable from "./Applications-Table";
 import CreateApplication from "./Create-App";
 import axios from "axios";
 
-function UserDashboard() {
-  // hold applications table
-  // fetches data for applications table
+const UserDashboard = () => {
   const [isLoaded, setLoaded] = useState(false);
   const [applications, setApplications] = useState([]);
   const [value, setValue] = React.useState(0);
-  const url = "http://localhost:4000/api/applications";
+  const url = "http://localhost:4000/api/applications/";
 
-  const handleTabChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  // This async function gets called whenever the page loads and will update the data accordingly
+  // GET all applications
   const refreshApplications = async () => {
     console.log("FETCHING DATA...");
     const result = await axios(url);
@@ -29,25 +23,37 @@ function UserDashboard() {
     }
   };
 
-  const deleteApplication = async id => {
+  /*
+    TODO
+      - GET one application
+      - PUT (update) application
+  */
+
+  // DELETE application
+  const deleteApplication = async (id) => {
     console.log(`DELETING APP WITH ID: ${id}...`);
-    const res = await axios.delete(
-      `http://localhost:4000/api/applications/${id}`
-    );
+    await axios.delete(url + id);
     refreshApplications();
   };
 
-  const createApplication = async application => {
+  // POST application
+  const createApplication = async (app) => {
     console.log("CREATING NEW APPLICATION...");
-    const res = await axios.post(
-      "http://localhost:4000/api/applications",
-      application
-    );
-    refreshApplications();
-    setValue(0); // resets back to first tab
+    try {
+      await axios.post(url, app);
+      refreshApplications();
+      setValue(0); // resets back to first tab
+    } catch (err) {
+      setLoaded(false);
+    }
   };
 
-  // Makes API request
+  // changes tab value/index to new value
+  const handleTabChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  // Fetches data when component is mounted
   useEffect(() => {
     refreshApplications();
   }, []);

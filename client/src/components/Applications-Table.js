@@ -10,8 +10,6 @@ import Button from "@material-ui/core/Button";
 import LoadingSpinner from "../shared/LoadingSpinner";
 
 // material UI styling. similar to CSS
-// I think this is called CSS in JS if you want to look it up
-// makeStyles & theme are a material UI thing
 const useStyles = makeStyles(theme => ({
   buttonEdit: {
     marginRight: theme.spacing(1)
@@ -24,10 +22,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// Functional component
-// recieve list of applications as props
-function ApplicationsTable(props) {
-  const classes = useStyles(); // This is how we can access the styling. ex) "classes.button"
+// Recieve list of applications as props
+const ApplicationsTable = (props) => {
+  const classes = useStyles();
   const { applications, isLoaded, handleDelete } = props;
 
   // List of header
