@@ -2,32 +2,32 @@ import React, { useState, useEffect } from "react";
 import Tabbar from "./Tabbar";
 import ApplicationsTable from "./Applications-Table";
 import CreateApplication from "./Create-App";
+import UpdateApp from './Update-Application';
 import axios from "axios";
 
 const UserDashboard = () => {
   const [isLoaded, setLoaded] = useState(false);
   const [applications, setApplications] = useState([]);
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const url = "http://localhost:4000/api/applications/";
 
   // GET all applications
   const refreshApplications = async () => {
-    console.log("FETCHING DATA...");
     const result = await axios(url);
     try {
       setApplications(result.data);
       setLoaded(true);
     } catch (err) {
-      console.error(err);
+      window.alert(err);
       setLoaded(false);
     }
   };
 
-  /*
-    TODO
-      - GET one application
-      - PUT (update) application
-  */
+  const updateApplicaiton = async (app) =>{
+    // console.log("Updating Application")
+    // await axios.put(url + id, app);
+    // refreshApplications();
+  }
 
   // DELETE application
   const deleteApplication = async (id) => {

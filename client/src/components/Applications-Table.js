@@ -45,7 +45,7 @@ const ApplicationsTable = props => {
   // renders table
   const renderTable = (
     <div>
-      <h1>List of Applications</h1>
+      <h1>Applications</h1>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -63,9 +63,7 @@ const ApplicationsTable = props => {
           <TableBody>
             {applications.map(app => (
               <TableRow key={app._id}>
-                <TableCell component="th" scope="row">
-                  {app.companyName}
-                </TableCell>
+                <TableCell component="th" scope="row">{app.companyName}</TableCell>
                 <TableCell align="right">{app.position}</TableCell>
                 <TableCell align="right">{app.applicationDate}</TableCell>
                 <TableCell align="right">{app.status}</TableCell>
@@ -73,7 +71,7 @@ const ApplicationsTable = props => {
                 <TableCell align="right">{app.howFar}</TableCell>
                 <TableCell align="right">{app.portalLink}</TableCell>
                 <TableCell align="right">{app.JobBoard}</TableCell>
-                <TableCell key={app._id} align="right">
+                <TableCell align="right">
                   {
                     <Button
                       onClick={() => {
