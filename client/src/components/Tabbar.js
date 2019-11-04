@@ -61,6 +61,7 @@ const Tabbar = (props) => {
   const {
     ApplicationsTable,
     CreateApplication,
+    UpdateApp,
     value,
     handleTabChange
   } = props;
@@ -76,6 +77,7 @@ const Tabbar = (props) => {
         >
           <LinkTab label="Applications" {...a11yProps(0)} />
           <LinkTab label="Create Entry" {...a11yProps(1)} />
+          <LinkTab label="BIGGA" {...a11yProps(2)} /> {/* Delete later*/}
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -83,6 +85,9 @@ const Tabbar = (props) => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         {CreateApplication}
+      </TabPanel>
+      <TabPanel value={value} index={2}> {/* Delete later*/}
+        {UpdateApp}
       </TabPanel>
     </div>
   );

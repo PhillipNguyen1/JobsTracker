@@ -3,6 +3,7 @@ import Tabbar from "./Tabbar";
 import ApplicationsTable from "./Applications-Table";
 import CreateApplication from "./Create-App";
 import UpdateApp from './Update-Application';
+
 import axios from "axios";
 
 const UserDashboard = () => {
@@ -21,13 +22,13 @@ const UserDashboard = () => {
       window.alert(err);
       setLoaded(false);
     }
-  };
-
-  const updateApplicaiton = async (app) =>{
-    // console.log("Updating Application")
-    // await axios.put(url + id, app);
-    // refreshApplications();
   }
+
+  // const updateApplicaiton = async (app) =>{
+  //    console.log("Updating Application")
+  //    await axios.put(url + id, app);
+  //    refreshApplications();
+  // }
 
   // DELETE application
   const deleteApplication = async (id) => {
@@ -73,6 +74,10 @@ const UserDashboard = () => {
         }
         CreateApplication={
           <CreateApplication handleCreate={createApplication} />
+        }
+        UpdateApp={
+          <UpdateApp 
+          />
         }
       />
     </div>
