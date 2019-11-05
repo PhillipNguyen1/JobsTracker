@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Tabbar from "./Tabbar";
 import ApplicationsTable from "./Applications-Table";
 import CreateApplication from "./Create-App";
-import UpdateApp from './Update-Application';
 
 import axios from "axios";
 
-const UserDashboard = () => {
+const UserDashboard = (props) => {
+  const { UpdateApp } = props
   const [isLoaded, setLoaded] = useState(false);
   const [applications, setApplications] = useState([]);
   const [value, setValue] = useState(0);
@@ -45,9 +45,8 @@ const UserDashboard = () => {
 
   // PUT application (edit)
   const editApplication = async (app) =>{
-    console.log("EDITING THE EXISTING FUCKING APPLICATION FUCKER ")
     console.log(app)
-    // await axios.put(url + "5dbeb3caba865856389bba38", data);
+    // await axios.put(url + app._id, app);
     // try{
     //   refreshApplications();
     //   setValue(0);
@@ -84,6 +83,7 @@ const UserDashboard = () => {
           <CreateApplication handleCreate={createApplication} />
         }
       />
+      
     </div>
   );
 }
