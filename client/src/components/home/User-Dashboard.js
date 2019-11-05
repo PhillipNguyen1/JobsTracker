@@ -24,32 +24,33 @@ const UserDashboard = props => {
 
   // DELETE application
   const deleteApplication = async id => {
-    console.log(`DELETING APP WITH ID: ${id}...`);
-    await axios.delete(url + id);
-    refreshApplications();
+    try {
+      await axios.delete(url + id);
+      refreshApplications();
+    } catch (err) {
+      window.alert(err);
+    }
   };
 
   // POST application
   const createApplication = async app => {
-    console.log("CREATING NEW APPLICATION...");
     try {
       await axios.post(url, app);
       refreshApplications();
       setValue(0);
     } catch (err) {
-      setLoaded(false);
+      window.alert(err);
     }
   };
 
   // PUT application (edit)
   const editApplication = async app => {
-    console.log("EDITING APPLICATION...");
-    await axios.put(url + app._id, app);
-    setLoaded(false);
     try {
+      await axios.put(url + app._id, app);
+      setLoaded(false);
       refreshApplications();
     } catch (err) {
-      console.log(err);
+      window.alert(err);
     }
   };
 

@@ -42,7 +42,6 @@ export const ApplicationModalStyle = makeStyles(theme => ({
   }
 }));
 
-// material UI styling. similar to CSS
 export const ApplicationTableStyle = makeStyles(theme => ({
   buttonEdit: {
     marginRight: theme.spacing(1)
