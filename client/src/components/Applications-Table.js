@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import LoadingSpinner from "../shared/LoadingSpinner";
+import UpdateApp from "./Update-Application";
 
 // material UI styling. similar to CSS
 const useStyles = makeStyles(theme => ({
@@ -25,7 +26,23 @@ const useStyles = makeStyles(theme => ({
 // Recieve list of applications as props
 const ApplicationsTable = props => {
   const classes = useStyles();
-  const { applications, isLoaded, handleDelete } = props;
+  const { applications, isLoaded, handleDelete, handleEdit } = props;
+
+  const [open, setOpen] = React.useState(false);
+
+  const initialformState = {
+    companyName: "",
+    position: "",
+    applicationDate: "",
+    status: "",
+    response: "",
+    howFar: "",
+    portalLink: "",
+    JobBoard: "",
+    salary: ""
+  };
+
+  const [modalApp, setModalApp] = React.useState(initialformState);
 
   // List of header
   const headers = [
@@ -45,7 +62,7 @@ const ApplicationsTable = props => {
   // renders table
   const renderTable = (
     <div>
-      <h1>List of Applications</h1>
+      <h1>Applications</h1>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -63,9 +80,7 @@ const ApplicationsTable = props => {
           <TableBody>
             {applications.map(app => (
               <TableRow key={app._id}>
-                <TableCell component="th" scope="row">
-                  {app.companyName}
-                </TableCell>
+                <TableCell component="th" scope="row">{app.companyName}</TableCell>
                 <TableCell align="right">{app.position}</TableCell>
                 <TableCell align="right">{app.applicationDate}</TableCell>
                 <TableCell align="right">{app.status}</TableCell>
@@ -73,11 +88,12 @@ const ApplicationsTable = props => {
                 <TableCell align="right">{app.howFar}</TableCell>
                 <TableCell align="right">{app.portalLink}</TableCell>
                 <TableCell align="right">{app.JobBoard}</TableCell>
-                <TableCell key={app._id} align="right">
+                <TableCell align="right">
                   {
                     <Button
                       onClick={() => {
-                        console.log(app._id);
+                        setModalApp(app); 
+                        setOpen(!open);
                       }}
                       className={classes.buttonEdit}
                     >
@@ -102,6 +118,9 @@ const ApplicationsTable = props => {
           </TableBody>
         </Table>
       </Paper>
+
+      <UpdateApp open={open} setOpen={setOpen} app={modalApp} handleEdit={handleEdit}/>
+      
     </div>
   );
 
