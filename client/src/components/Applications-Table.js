@@ -25,8 +25,8 @@ const useStyles = makeStyles(theme => ({
 // Recieve list of applications as props
 const ApplicationsTable = props => {
   const classes = useStyles();
-  const { applications, isLoaded, handleDelete } = props;
-
+  const { applications, isLoaded, handleDelete, handleEdit } = props;
+  
   // List of header
   const headers = [
     "Position",
@@ -74,8 +74,8 @@ const ApplicationsTable = props => {
                 <TableCell align="right">
                   {
                     <Button
-                      onClick={() => {
-                        console.log(app._id);
+                      onClick={() =>{
+                        handleEdit(app)
                       }}
                       className={classes.buttonEdit}
                     >

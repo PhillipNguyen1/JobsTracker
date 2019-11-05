@@ -24,12 +24,6 @@ const UserDashboard = () => {
     }
   }
 
-  // const updateApplicaiton = async (app) =>{
-  //    console.log("Updating Application")
-  //    await axios.put(url + id, app);
-  //    refreshApplications();
-  // }
-
   // DELETE application
   const deleteApplication = async (id) => {
     console.log(`DELETING APP WITH ID: ${id}...`);
@@ -48,6 +42,19 @@ const UserDashboard = () => {
       setLoaded(false);
     }
   };
+
+  // PUT application (edit)
+  const editApplication = async (app) =>{
+    console.log("EDITING THE EXISTING FUCKING APPLICATION FUCKER ")
+    console.log(app)
+    // await axios.put(url + "5dbeb3caba865856389bba38", data);
+    // try{
+    //   refreshApplications();
+    //   setValue(0);
+    // } catch(err){
+    //   setLoaded(false);
+    // }
+  }
 
   // changes tab value/index to new value
   const handleTabChange = (event, newValue) => {
@@ -70,14 +77,11 @@ const UserDashboard = () => {
             applications={applications}
             isLoaded={isLoaded}
             handleDelete={deleteApplication}
+            handleEdit={editApplication}
           />
         }
         CreateApplication={
           <CreateApplication handleCreate={createApplication} />
-        }
-        UpdateApp={
-          <UpdateApp 
-          />
         }
       />
     </div>
