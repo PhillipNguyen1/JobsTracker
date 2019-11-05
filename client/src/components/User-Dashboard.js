@@ -5,7 +5,6 @@ import CreateApplication from "./Create-App";
 import axios from "axios";
 
 const UserDashboard = (props) => {
-  const { UpdateApp } = props
   const [isLoaded, setLoaded] = useState(false);
   const [applications, setApplications] = useState([]);
   const [value, setValue] = useState(0);
@@ -44,19 +43,14 @@ const UserDashboard = (props) => {
 
   // PUT application (edit)
   const editApplication = async (app) =>{
-    console.log(app)
-    
-    // Render the modal
-    // edit 
-    
-    
-    // await axios.put(url + app._id, app);
-    // try{
-    //   refreshApplications();
-    //   setValue(0);
-    // } catch(err){
-    //   setLoaded(false);
-    // }
+    // console.log(app)
+    await axios.put(url + app._id, app);
+    try{
+      refreshApplications();
+      setValue(0);
+    } catch(err){
+      setLoaded(false);
+    }
   }
 
   // changes tab value/index to new value

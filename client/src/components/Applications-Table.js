@@ -38,13 +38,11 @@ const ApplicationsTable = props => {
     response: "",
     howFar: "",
     portalLink: "",
-    jobBoard: "",
+    JobBoard: "",
     salary: ""
   };
 
   const [modalApp, setModalApp] = React.useState(initialformState);
-
-
 
   // List of header
   const headers = [
@@ -120,7 +118,9 @@ const ApplicationsTable = props => {
           </TableBody>
         </Table>
       </Paper>
-      <UpdateApp open={open} setOpen={setOpen} app={modalApp}/>
+
+      <UpdateApp open={open} setOpen={setOpen} app={modalApp} handleEdit={handleEdit}/>
+      
     </div>
   );
 

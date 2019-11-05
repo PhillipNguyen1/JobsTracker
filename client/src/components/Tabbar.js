@@ -61,7 +61,6 @@ const Tabbar = (props) => {
   const {
     ApplicationsTable,
     CreateApplication,
-    UpdateApp,
     value,
     handleTabChange
   } = props;

@@ -10,7 +10,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -34,37 +33,25 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function UpdateApp(props) {
-  // const url = "http://localhost:4000/api/applications/";
   
   const classes = useStyles();
 
-  const { open, setOpen, app} = props
+  const { open, setOpen, app, handleEdit} = props
   
-
-  const initialformState = {
-    companyName: "",
-    position: "",
-    applicationDate: "",
-    status: "",
-    response: "",
-    howFar: "",
-    portalLink: "",
-    jobBoard: "",
-    salary: ""
-  };
-
-  const [formState, setFormState] = React.useState(initialformState)
+  const [formState, setFormState] = React.useState(app)
 
   React.useEffect(() => {
-    // console.log("GETTING DATA")
-    // axios(url + "5dbeb356ba865856389bba36").then(res => setFormState(res.data));
     console.log(app)
     setFormState(app);
-  })
+  }, [open])
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({ ...formState, [name]: value });
+  };
+
 
   const handleClose = () => {
     setOpen(false);
@@ -89,8 +76,7 @@ export default function UpdateApp(props) {
             label="Company Name"
             className={classes.textField}
             defaultValue={formState.companyName}
-            // onChange={handleChange}
-            // value={formState.companyName}
+            onChange={handleChange}
             margin="normal"
           />
           <TextField
@@ -100,8 +86,7 @@ export default function UpdateApp(props) {
             className={classes.textField}
             name="position"
             defaultValue={formState.position}
-            // onChange={handleChange}
-            // value={formState.position}
+            onChange={handleChange}
             margin="normal"
           />
           <TextField
@@ -112,8 +97,7 @@ export default function UpdateApp(props) {
             className={classes.textField}
             name="applicationDate"
             defaultValue={formState.applicationDate}
-            // onChange={handleChange}
-            // value={formState.applicationDate}
+            onChange={handleChange}
             InputLabelProps={{
               shrink: true
             }}
@@ -126,8 +110,7 @@ export default function UpdateApp(props) {
             className={classes.textField}
             name="status"
             defaultValue={formState.status}
-            // onChange={handleChange}
-            // value={formState.status}
+            onChange={handleChange}
             margin="normal"
           />
           <TextField
@@ -136,8 +119,7 @@ export default function UpdateApp(props) {
             className={classes.textField}
             name="response"
             defaultValue={formState.response}
-            // onChange={handleChange}
-            // value={formState.response}
+            onChange={handleChange}
             margin="normal"
           />
           <TextField
@@ -145,9 +127,8 @@ export default function UpdateApp(props) {
             label="How Far?"
             name="howFar"
             defaultValue={formState.howFar}
-            // onChange={handleChange}
+            onChange={handleChange}
             className={classes.textField}
-            // value={formState.howFar}
             margin="normal"
           />
           <TextField
@@ -155,18 +136,16 @@ export default function UpdateApp(props) {
             label="Portal Link"
             name="portalLink"
             defaultValue={formState.portalLink}
-            // onChange={handleChange}
-            // value={formState.portalLink}
+            onChange={handleChange}
             className={classes.textField}
             margin="normal"
           />
           <TextField
             id="form-job-board"
             label="Job Board"
-            name="jobBoard"
-            defaultValue={formState.jobBoard}
-            // onChange={handleChange}
-            // value={formState.jobBoard}
+            name="JobBoard"
+            defaultValue={formState.JobBoard}
+            onChange={handleChange}
             margin="normal"
             className={clsx(classes.textField, classes.dense)}
           />
@@ -181,8 +160,7 @@ export default function UpdateApp(props) {
               )
             }}
             defaultValue={formState.salary}
-            // onChange={handleChange}
-            // value={formState.salary}
+            onChange={handleChange}
             className={classes.textField}
             InputLabelProps={{
               shrink: true
@@ -194,8 +172,11 @@ export default function UpdateApp(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
+          
+          
           <Button onClick={()=>{
-
+            handleEdit(formState);
+            handleClose();
           }} color="primary">
             Edit
           </Button>
@@ -204,8 +185,3 @@ export default function UpdateApp(props) {
     </div>
   );
 }
-/*
-Two possible solutions:
-1) Get the ID, then make a get request for all that information for that given ID and fill out the form as the defaultValue field
-2) Pass in all the information for that given field directly from the table row (again in the defaultValue field)
-*/
