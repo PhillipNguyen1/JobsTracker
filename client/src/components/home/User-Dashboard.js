@@ -4,7 +4,7 @@ import ApplicationsTable from "../application/Applications-Table";
 import CreateApplication from "../application/Application-Form";
 import axios from "axios";
 
-const UserDashboard = (props) => {
+const UserDashboard = props => {
   const [isLoaded, setLoaded] = useState(false);
   const [applications, setApplications] = useState([]);
   const [value, setValue] = useState(0);
@@ -20,17 +20,17 @@ const UserDashboard = (props) => {
       window.alert(err);
       setLoaded(false);
     }
-  }
+  };
 
   // DELETE application
-  const deleteApplication = async (id) => {
+  const deleteApplication = async id => {
     console.log(`DELETING APP WITH ID: ${id}...`);
     await axios.delete(url + id);
     refreshApplications();
   };
 
   // POST application
-  const createApplication = async (app) => {
+  const createApplication = async app => {
     console.log("CREATING NEW APPLICATION...");
     try {
       await axios.post(url, app);
@@ -42,16 +42,16 @@ const UserDashboard = (props) => {
   };
 
   // PUT application (edit)
-  const editApplication = async (app) =>{
+  const editApplication = async app => {
     console.log("EDITING APPLICATION...");
     await axios.put(url + app._id, app);
     setLoaded(false);
-    try{
+    try {
       refreshApplications();
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   // changes tab value/index to new value
   const handleTabChange = (event, newValue) => {
@@ -82,6 +82,6 @@ const UserDashboard = (props) => {
       />
     </div>
   );
-}
+};
 
 export default UserDashboard;

@@ -4,26 +4,26 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import initialformState from "../../shared/initalFormState";
-import { ApplicationFormStyle } from './Applications-Style';
+import { ApplicationFormStyle } from "./Applications-Style";
 
-const ApplicationForm = (props) => {
+const ApplicationForm = props => {
   const classes = ApplicationFormStyle();
   const { handleCreate } = props;
   const [formState, setFormState] = useState(initialformState);
 
   function invalidForm() {
     const { companyName, position, applicationDate } = formState;
-    return (!companyName || !position || !applicationDate);
+    return !companyName || !position || !applicationDate;
   }
 
   // Handles user input
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { name, value } = event.target;
 
     setFormState({ ...formState, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
     if (invalidForm()) {

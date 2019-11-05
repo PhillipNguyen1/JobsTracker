@@ -21,7 +21,11 @@ const Navbar = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <ToolBar>
-          <Typography variant="subtitle1" color="inherit" className={classes.title}>
+          <Typography
+            variant="subtitle1"
+            color="inherit"
+            className={classes.title}
+          >
             Job Tracker
           </Typography>
           <Button color="inherit">Login</Button>
