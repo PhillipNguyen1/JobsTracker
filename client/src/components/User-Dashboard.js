@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Tabbar from "./Tabbar";
 import ApplicationsTable from "./Applications-Table";
 import CreateApplication from "./Create-App";
-
 import axios from "axios";
 
 const UserDashboard = (props) => {
@@ -46,6 +45,11 @@ const UserDashboard = (props) => {
   // PUT application (edit)
   const editApplication = async (app) =>{
     console.log(app)
+    
+    // Render the modal
+    // edit 
+    
+    
     // await axios.put(url + app._id, app);
     // try{
     //   refreshApplications();

@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import LoadingSpinner from "../shared/LoadingSpinner";
+import UpdateApp from "./Update-Application";
 
 // material UI styling. similar to CSS
 const useStyles = makeStyles(theme => ({
@@ -26,7 +27,25 @@ const useStyles = makeStyles(theme => ({
 const ApplicationsTable = props => {
   const classes = useStyles();
   const { applications, isLoaded, handleDelete, handleEdit } = props;
-  
+
+  const [open, setOpen] = React.useState(false);
+
+  const initialformState = {
+    companyName: "",
+    position: "",
+    applicationDate: "",
+    status: "",
+    response: "",
+    howFar: "",
+    portalLink: "",
+    jobBoard: "",
+    salary: ""
+  };
+
+  const [modalApp, setModalApp] = React.useState(initialformState);
+
+
+
   // List of header
   const headers = [
     "Position",
@@ -74,8 +93,9 @@ const ApplicationsTable = props => {
                 <TableCell align="right">
                   {
                     <Button
-                      onClick={() =>{
-                        handleEdit(app)
+                      onClick={() => {
+                        setModalApp(app); 
+                        setOpen(!open);
                       }}
                       className={classes.buttonEdit}
                     >
@@ -100,6 +120,7 @@ const ApplicationsTable = props => {
           </TableBody>
         </Table>
       </Paper>
+      <UpdateApp open={open} setOpen={setOpen} app={modalApp}/>
     </div>
   );
 

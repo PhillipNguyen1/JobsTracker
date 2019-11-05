@@ -10,6 +10,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
+import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -32,11 +33,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function UpdateApp() {
+export default function UpdateApp(props) {
   // const url = "http://localhost:4000/api/applications/";
   
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+
+  const { open, setOpen, app} = props
+  
 
   const initialformState = {
     companyName: "",
@@ -52,14 +55,16 @@ export default function UpdateApp() {
 
   const [formState, setFormState] = React.useState(initialformState)
 
-  // React.useEffect(() => {
-  //   console.log("GETTING DATA")
-  //   axios(url + "5dbeb356ba865856389bba36").then(res => setFormState(res.data));
-  // },[])
+  React.useEffect(() => {
+    // console.log("GETTING DATA")
+    // axios(url + "5dbeb356ba865856389bba36").then(res => setFormState(res.data));
+    console.log(app)
+    setFormState(app);
+  })
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -67,10 +72,6 @@ export default function UpdateApp() {
 
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
-      
       <Dialog
         open={open}
         onClose={handleClose}
@@ -86,7 +87,6 @@ export default function UpdateApp() {
             id="form-company-name"
             name="companyName"
             label="Company Name"
-            
             className={classes.textField}
             defaultValue={formState.companyName}
             // onChange={handleChange}
@@ -194,7 +194,9 @@ export default function UpdateApp() {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={()=>{
+
+          }} color="primary">
             Edit
           </Button>
         </DialogActions>
