@@ -39,7 +39,7 @@ const CreateApplication = (props) => {
     response: "",
     howFar: "",
     portalLink: "",
-    jobBoard: "",
+    JobBoard: "",
     salary: ""
   };
 
@@ -155,11 +155,11 @@ const CreateApplication = (props) => {
         <TextField
           id="form-job-board"
           label="Job Board"
-          name="jobBoard"
+          name="JobBoard"
           onChange={handleChange}
           margin="normal"
           className={clsx(classes.textField, classes.dense)}
-          value={formState.jobBoard}
+          value={formState.JobBoard}
         />
         <TextField
           id="form-salary"
