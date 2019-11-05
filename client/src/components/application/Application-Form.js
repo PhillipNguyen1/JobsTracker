@@ -1,63 +1,29 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import initialformState from "../../shared/initalFormState";
+import { applicationFormStyles } from "./Applications-Style";
 
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  button: {
-    margin: theme.spacing(1)
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200
-  },
-  dense: {
-    marginTop: 19
-  },
-  menu: {
-    width: 200
-  }
-}));
-
-const CreateApplication = (props) => {
-  const classes = useStyles();
+const ApplicationForm = props => {
+  const classes = applicationFormStyles();
   const { handleCreate } = props;
-
-  // intial state of form
-  const initialformState = {
-    companyName: "",
-    position: "",
-    applicationDate: "",
-    status: "",
-    response: "",
-    howFar: "",
-    portalLink: "",
-    JobBoard: "",
-    salary: ""
-  };
-
-  const [formState, setformState] = useState(initialformState);
+  const [formState, setFormState] = useState(initialformState);
 
   function invalidForm() {
     const { companyName, position, applicationDate } = formState;
-    return (!companyName || !position || !applicationDate);
+    return !companyName || !position || !applicationDate;
   }
 
   // Handles user input
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { name, value } = event.target;
 
-    setformState({ ...formState, [name]: value });
+    setFormState({ ...formState, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
     if (invalidForm()) {
@@ -69,7 +35,7 @@ const CreateApplication = (props) => {
   };
 
   const handleReset = () => {
-    setformState(initialformState);
+    setFormState(initialformState);
   };
 
   return (
@@ -191,4 +157,4 @@ const CreateApplication = (props) => {
   );
 };
 
-export default CreateApplication;
+export default ApplicationForm;

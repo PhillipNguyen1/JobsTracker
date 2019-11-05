@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Tabbar from "./Tabbar";
-import ApplicationsTable from "./Applications-Table";
-import CreateApplication from "./Create-App";
+import Tabbar from "../navigation/Tabbar";
+import ApplicationsTable from "../application/Applications-Table";
+import CreateApplication from "../application/Application-Form";
 import axios from "axios";
 
-const UserDashboard = (props) => {
+const UserDashboard = props => {
   const [isLoaded, setLoaded] = useState(false);
   const [applications, setApplications] = useState([]);
   const [value, setValue] = useState(0);
@@ -20,38 +20,39 @@ const UserDashboard = (props) => {
       window.alert(err);
       setLoaded(false);
     }
-  }
+  };
 
   // DELETE application
-  const deleteApplication = async (id) => {
-    console.log(`DELETING APP WITH ID: ${id}...`);
-    await axios.delete(url + id);
-    refreshApplications();
+  const deleteApplication = async id => {
+    try {
+      await axios.delete(url + id);
+      refreshApplications();
+    } catch (err) {
+      window.alert(err);
+    }
   };
 
   // POST application
-  const createApplication = async (app) => {
-    console.log("CREATING NEW APPLICATION...");
+  const createApplication = async app => {
     try {
       await axios.post(url, app);
       refreshApplications();
-      setValue(0); // resets back to first tab
+      setValue(0);
     } catch (err) {
-      setLoaded(false);
+      window.alert(err);
     }
   };
 
   // PUT application (edit)
-  const editApplication = async (app) =>{
-    // console.log(app)
-    await axios.put(url + app._id, app);
-    try{
-      refreshApplications();
-      setValue(0);
-    } catch(err){
+  const editApplication = async app => {
+    try {
+      await axios.put(url + app._id, app);
       setLoaded(false);
+      refreshApplications();
+    } catch (err) {
+      window.alert(err);
     }
-  }
+  };
 
   // changes tab value/index to new value
   const handleTabChange = (event, newValue) => {
@@ -65,7 +66,6 @@ const UserDashboard = (props) => {
 
   return (
     <div>
-      {/* Pass components to Tabbar */}
       <Tabbar
         value={value}
         handleTabChange={handleTabChange}
@@ -81,9 +81,8 @@ const UserDashboard = (props) => {
           <CreateApplication handleCreate={createApplication} />
         }
       />
-      
     </div>
   );
-}
+};
 
 export default UserDashboard;
