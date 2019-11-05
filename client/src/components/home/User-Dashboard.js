@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Tabbar from "./Tabbar";
-import ApplicationsTable from "./Applications-Table";
-import CreateApplication from "./Create-App";
+import Tabbar from "../navigation/Tabbar";
+import ApplicationsTable from "../application/Applications-Table";
+import CreateApplication from "../application/Application-Form";
 import axios from "axios";
 
 const UserDashboard = (props) => {
@@ -35,7 +35,7 @@ const UserDashboard = (props) => {
     try {
       await axios.post(url, app);
       refreshApplications();
-      setValue(0); // resets back to first tab
+      setValue(0);
     } catch (err) {
       setLoaded(false);
     }
@@ -43,13 +43,13 @@ const UserDashboard = (props) => {
 
   // PUT application (edit)
   const editApplication = async (app) =>{
-    // console.log(app)
+    console.log("EDITING APPLICATION...");
     await axios.put(url + app._id, app);
+    setLoaded(false);
     try{
       refreshApplications();
-      setValue(0);
     } catch(err){
-      setLoaded(false);
+      console.log(err);
     }
   }
 
@@ -65,7 +65,6 @@ const UserDashboard = (props) => {
 
   return (
     <div>
-      {/* Pass components to Tabbar */}
       <Tabbar
         value={value}
         handleTabChange={handleTabChange}
@@ -81,7 +80,6 @@ const UserDashboard = (props) => {
           <CreateApplication handleCreate={createApplication} />
         }
       />
-      
     </div>
   );
 }

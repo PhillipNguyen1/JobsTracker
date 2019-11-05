@@ -7,7 +7,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
-const TabPanel = (props) => {
+const TabPanel = props => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -22,7 +22,7 @@ const TabPanel = (props) => {
       <Box p={3}>{children}</Box>
     </Typography>
   );
-}
+};
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -30,14 +30,14 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired
 };
 
-const a11yProps = (index) => {
+const a11yProps = index => {
   return {
     id: `nav-tab-${index}`,
     "aria-controls": `nav-tabpanel-${index}`
   };
-}
+};
 
-const LinkTab = (props) => {
+const LinkTab = props => {
   return (
     <Tab
       component="a"
@@ -47,7 +47,7 @@ const LinkTab = (props) => {
       {...props}
     />
   );
-}
+};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Tabbar = (props) => {
+const Tabbar = props => {
   const classes = useStyles();
   const {
     ApplicationsTable,
@@ -86,6 +86,6 @@ const Tabbar = (props) => {
       </TabPanel>
     </div>
   );
-}
+};
 
 export default Tabbar;

@@ -5,43 +5,17 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import LoadingSpinner from "../shared/LoadingSpinner";
-import UpdateApp from "./Update-Application";
-
-// material UI styling. similar to CSS
-const useStyles = makeStyles(theme => ({
-  buttonEdit: {
-    marginRight: theme.spacing(1)
-  },
-  buttonDelete: {
-    marginLeft: theme.spacing(1)
-  },
-  appList: {
-    margin: theme.spacing(1)
-  }
-}));
+import LoadingSpinner from "../../shared/LoadingSpinner";
+import UpdateApp from "./Application-modal";
+import initialformState from "../../shared/initalFormState";
+import { ApplicationTableStyle } from "./Applications-Style";
 
 // Recieve list of applications as props
 const ApplicationsTable = props => {
-  const classes = useStyles();
+  const classes = ApplicationTableStyle();
   const { applications, isLoaded, handleDelete, handleEdit } = props;
-
   const [open, setOpen] = React.useState(false);
-
-  const initialformState = {
-    companyName: "",
-    position: "",
-    applicationDate: "",
-    status: "",
-    response: "",
-    howFar: "",
-    portalLink: "",
-    JobBoard: "",
-    salary: ""
-  };
-
   const [modalApp, setModalApp] = React.useState(initialformState);
 
   // List of header
@@ -80,7 +54,9 @@ const ApplicationsTable = props => {
           <TableBody>
             {applications.map(app => (
               <TableRow key={app._id}>
-                <TableCell component="th" scope="row">{app.companyName}</TableCell>
+                <TableCell component="th" scope="row">
+                  {app.companyName}
+                </TableCell>
                 <TableCell align="right">{app.position}</TableCell>
                 <TableCell align="right">{app.applicationDate}</TableCell>
                 <TableCell align="right">{app.status}</TableCell>
@@ -92,7 +68,7 @@ const ApplicationsTable = props => {
                   {
                     <Button
                       onClick={() => {
-                        setModalApp(app); 
+                        setModalApp(app);
                         setOpen(!open);
                       }}
                       className={classes.buttonEdit}
@@ -119,8 +95,12 @@ const ApplicationsTable = props => {
         </Table>
       </Paper>
 
-      <UpdateApp open={open} setOpen={setOpen} app={modalApp} handleEdit={handleEdit}/>
-      
+      <UpdateApp
+        open={open}
+        setOpen={setOpen}
+        app={modalApp}
+        handleEdit={handleEdit}
+      />
     </div>
   );
 

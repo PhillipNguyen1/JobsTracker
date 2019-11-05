@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -9,49 +8,23 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { ApplicationModalStyle } from './Applications-Style';
 
-
-const useStyles = makeStyles(theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  button: {
-    margin: theme.spacing(1)
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200
-  },
-  dense: {
-    marginTop: 19
-  },
-  menu: {
-    width: 200
-  }
-}));
-
-export default function UpdateApp(props) {
-  
-  const classes = useStyles();
-
-  const { open, setOpen, app, handleEdit} = props
-  
-  const [formState, setFormState] = React.useState(app)
+const ApplicationModal = (props) => {
+  const classes = ApplicationModalStyle();
+  const { open, setOpen, app, handleEdit } = props;
+  const [formState, setFormState] = React.useState(app);
 
   React.useEffect(() => {
-    console.log(app)
+    console.log(app);
     setFormState(app);
-  }, [open])
+  }, [open, app]);
 
-
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { name, value } = event.target;
 
     setFormState({ ...formState, [name]: value });
   };
-
 
   const handleClose = () => {
     setOpen(false);
@@ -172,12 +145,14 @@ export default function UpdateApp(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          
-          
-          <Button onClick={()=>{
-            handleEdit(formState);
-            handleClose();
-          }} color="primary">
+
+          <Button
+            onClick={() => {
+              handleEdit(formState);
+              handleClose();
+            }}
+            color="primary"
+          >
             Edit
           </Button>
         </DialogActions>
@@ -185,3 +160,5 @@ export default function UpdateApp(props) {
     </div>
   );
 }
+
+export default ApplicationModal;
