@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const ApplicationFormStyle = makeStyles(theme => ({
+export const applicationFormStyles = makeStyles(theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
@@ -21,7 +21,7 @@ export const ApplicationFormStyle = makeStyles(theme => ({
   }
 }));
 
-export const ApplicationModalStyle = makeStyles(theme => ({
+export const applicationModalStyles = makeStyles(theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
@@ -42,7 +42,7 @@ export const ApplicationModalStyle = makeStyles(theme => ({
   }
 }));
 
-export const ApplicationTableStyle = makeStyles(theme => ({
+export const applicationTableStyles = makeStyles(theme => ({
   buttonEdit: {
     marginRight: theme.spacing(1)
   },

@@ -8,10 +8,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { ApplicationModalStyle } from "./Applications-Style";
+import { applicationModalStyles } from "./Applications-Style";
 
 const ApplicationModal = props => {
-  const classes = ApplicationModalStyle();
+  const classes = applicationModalStyles();
   const { open, setOpen, app, handleEdit } = props;
   const [formState, setFormState] = React.useState(app);
 

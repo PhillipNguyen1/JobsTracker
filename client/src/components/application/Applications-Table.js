@@ -9,11 +9,11 @@ import Button from "@material-ui/core/Button";
 import LoadingSpinner from "../../shared/LoadingSpinner";
 import UpdateApp from "./Application-modal";
 import initialformState from "../../shared/initalFormState";
-import { ApplicationTableStyle } from "./Applications-Style";
+import { applicationTableStyles } from "./Applications-Style";
 
 // Recieve list of applications as props
 const ApplicationsTable = props => {
-  const classes = ApplicationTableStyle();
+  const classes = applicationTableStyles();
   const { applications, isLoaded, handleDelete, handleEdit } = props;
   const [open, setOpen] = React.useState(false);
   const [modalApp, setModalApp] = React.useState(initialformState);

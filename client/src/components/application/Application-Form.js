@@ -4,10 +4,10 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import initialformState from "../../shared/initalFormState";
-import { ApplicationFormStyle } from "./Applications-Style";
+import { applicationFormStyles } from "./Applications-Style";
 
 const ApplicationForm = props => {
-  const classes = ApplicationFormStyle();
+  const classes = applicationFormStyles();
   const { handleCreate } = props;
   const [formState, setFormState] = useState(initialformState);
 
