@@ -1,14 +1,13 @@
-import React from 'react';
-import './App.css';
-import ApplicationsTable from './components/ApplicationsTable';
-import Navbar from './components/Navbar';
-import Tabbar from './components/Tabbar';
+import React from "react";
+import "./App.css";
+import Navbar from "./components/navigation/Navbar";
+import UserDashboard from "./components/home/User-Dashboard";
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Tabbar/>
+      <UserDashboard />
     </div>
   );
 }
