@@ -3,21 +3,25 @@ import Tabbar from "../navigation/Tabbar";
 import ApplicationsTable from "../application/Applications-Table";
 import CreateApplication from "../application/Application-Form";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getApplications } from "../../redux/actions/applicationActions";
 
 const UserDashboard = props => {
+  const applications = useSelector(state => state.application.applications); // state has application field that holds applications
   const [isLoaded, setLoaded] = useState(false);
-  const [applications, setApplications] = useState([]);
   const [value, setValue] = useState(0);
-  const url = "http://localhost:4000/api/applications/";
+  const url = "http://localhost:4000/api/applications";
+  const dispatch = useDispatch();
 
   // GET all applications
   const refreshApplications = async () => {
-    const result = await axios(url);
+    console.log("Refreshing app...");
     try {
-      setApplications(result.data);
+      console.log("getApplications() called");
+      dispatch(getApplications());
       setLoaded(true);
-    } catch (err) {
-      window.alert(err);
+    } catch (error) {
+      console.log(error);
       setLoaded(false);
     }
   };
@@ -25,7 +29,7 @@ const UserDashboard = props => {
   // DELETE application
   const deleteApplication = async id => {
     try {
-      await axios.delete(url + id);
+      await axios.delete(`${url}/${id}`);
       refreshApplications();
     } catch (err) {
       window.alert(err);
@@ -46,7 +50,7 @@ const UserDashboard = props => {
   // PUT application (edit)
   const editApplication = async app => {
     try {
-      await axios.put(url + app._id, app);
+      await axios.put(`${url}/${app._id}`, app);
       setLoaded(false);
       refreshApplications();
     } catch (err) {
@@ -66,7 +70,7 @@ const UserDashboard = props => {
 
   return (
     <div>
-      <Tabbar
+        <Tabbar
         value={value}
         handleTabChange={handleTabChange}
         ApplicationsTable={

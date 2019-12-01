@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   GET_APPLICATIONS,
   GET_ONE_APPLICATION,
@@ -6,10 +7,18 @@ import {
   DELETE_APPLICATION
 } from "./types";
 
-export const getApplications = () => {
-  return {
-    type: GET_APPLICATIONS
-  };
+const url = 'http://localhost:4000';
+
+export const getApplications = () => dispatch => {
+  console.log("Making API request");
+  console.log("dispatching GET_APPLICATIONS");
+
+  // make API requests 
+  axios.get(`${url}/api/applications`).then(result => dispatch({
+    type: GET_APPLICATIONS,
+    payload: result.data
+  }));
+
 };
 
 export const getOneApplication = (id) => {

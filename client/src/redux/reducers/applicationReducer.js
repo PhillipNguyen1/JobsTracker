@@ -8,18 +8,15 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  applications: [
-    { id: uuid(), companyName: "google" },
-    { id: uuid(), companyName: "amazon" },
-    { id: uuid(), companyName: "tesla" }
-  ]
+  applications: []
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_APPLICATIONS:
       return {
-        ...state
+        ...state,
+        applications: action.payload
       };
     case GET_ONE_APPLICATION:
       return {
@@ -37,7 +34,9 @@ export default function(state = initialState, action) {
       return {
         ...state
       };
-    default: 
-      return state
+    default:
+      return {
+        ...state
+      };
   }
 }

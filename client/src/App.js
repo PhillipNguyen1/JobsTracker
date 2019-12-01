@@ -4,7 +4,7 @@ import Navbar from "./components/navigation/Navbar";
 import UserDashboard from "./components/home/User-Dashboard";
 
 import { Provider } from "react-redux";
-import store from "./redux/store/store";
+import store from "./redux/store";
 
 function App() {
   return (
