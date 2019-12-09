@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   GET_APPLICATIONS,
   GET_ONE_APPLICATION,
@@ -7,40 +7,77 @@ import {
   DELETE_APPLICATION
 } from "./types";
 
-const url = 'http://localhost:4000';
+const url = "http://localhost:4000/api/applications";
 
-export const getApplications = () => dispatch => {
-  console.log("Making API request");
-  console.log("dispatching GET_APPLICATIONS");
+// GET ALL
+export const getApplications = () => async dispatch => {
+  try {
+    const result = await axios.get(url);
 
-  // make API requests 
-  axios.get(`${url}/api/applications`).then(result => dispatch({
-    type: GET_APPLICATIONS,
-    payload: result.data
-  }));
-
+    dispatch({
+      type: GET_APPLICATIONS,
+      payload: result.data
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const getOneApplication = (id) => {
-  return {
-    type: GET_ONE_APPLICATION
-  };
+// GET ONE
+export const getOneApplication = id => async dispatch => {
+  try {
+    const result = await axios.get(`${url}/${id}`);
+
+    dispatch({
+      type: GET_ONE_APPLICATION,
+      payload: result.data
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const addApplication = (application) => {
-  return {
-    type: ADD_APPLICATION
-  };
+// ADD
+export const addApplication = application => async dispatch => {
+  try {
+    const result = await axios.post(url, application);
+
+    dispatch({
+      type: ADD_APPLICATION,
+      payload: result.data
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const updateApplication = (id) => {
-  return {
-    type: UPDATE_APPLICATION
-  };
+// UPDATE
+export const updateApplication = application => async dispatch => {
+  try {
+    await axios.put(`${url}/${application._id}`, application);
+
+    dispatch({
+      type: UPDATE_APPLICATION,
+      payload: {
+        id: application._id,
+        newApplication: application
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const deleteApplication = (id) => {
-  return {
-    type: DELETE_APPLICATION
-  };
+// DELETE
+export const deleteApplication = id => async dispatch => {
+  try {
+    await axios.delete(`${url}/${id}`);
+
+    dispatch({
+      type: DELETE_APPLICATION,
+      payload: id
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

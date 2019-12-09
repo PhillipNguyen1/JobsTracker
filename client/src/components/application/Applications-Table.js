@@ -7,7 +7,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import LoadingSpinner from "../../shared/LoadingSpinner";
-import UpdateApp from "./Application-modal";
+import ApplicationModal from "./Application-modal";
 import initialformState from "../../shared/initalFormState";
 import { applicationTableStyles } from "./Applications-Style";
 
@@ -17,6 +17,8 @@ const ApplicationsTable = props => {
   const { applications, isLoaded, handleDelete, handleEdit } = props;
   const [open, setOpen] = React.useState(false);
   const [modalApp, setModalApp] = React.useState(initialformState);
+
+  console.log(applications);
 
   // List of header
   const headers = [
@@ -95,7 +97,7 @@ const ApplicationsTable = props => {
         </Table>
       </Paper>
 
-      <UpdateApp
+      <ApplicationModal
         open={open}
         setOpen={setOpen}
         app={modalApp}
