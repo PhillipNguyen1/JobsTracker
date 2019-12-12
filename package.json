@@ -13,12 +13,18 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.2",
     "config": "^3.2.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.7.7"
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "validator": "^12.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
