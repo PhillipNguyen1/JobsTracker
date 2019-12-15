@@ -17,10 +17,13 @@ const Navbar = () => {
             variant="subtitle1"
             color="inherit"
             className={classes.title}
-            component={a}
+            component="a"
+            style={{
+              textDecoration: "none"
+            }}
             href="/"
           >
-            Job Tracker
+            Job-Tracker
           </Typography>
 
           <Button color="inherit" href="/register">
