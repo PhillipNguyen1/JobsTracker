@@ -9,7 +9,6 @@ import {
   updateApplication,
   deleteApplication as removeApplication
 } from "../../redux/actions/applicationActions";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const UserDashboard = props => {
   const applications = useSelector(state => state.application.applications); // state has application field that holds applications
@@ -65,26 +64,23 @@ const UserDashboard = props => {
   }, []);
 
   return (
-    <Router>
-      {/* <div>
-        <Tabbar
-          value={value}
-          handleTabChange={handleTabChange}
-          ApplicationsTable={
-            <ApplicationsTable
-              applications={applications}
-              isLoaded={isLoaded}
-              handleDelete={deleteApplication}
-              handleEdit={editApplication}
-            />
-          }
-          CreateApplication={
-            <CreateApplication handleCreate={createApplication} />
-          }
-        />
-      </div> */}
-      <Route path="/login"></Route>
-    </Router>
+    <div>
+      <Tabbar
+        value={value}
+        handleTabChange={handleTabChange}
+        ApplicationsTable={
+          <ApplicationsTable
+            applications={applications}
+            isLoaded={isLoaded}
+            handleDelete={deleteApplication}
+            handleEdit={editApplication}
+          />
+        }
+        CreateApplication={
+          <CreateApplication handleCreate={createApplication} />
+        }
+      />
+    </div>
   );
 };
 
