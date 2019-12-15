@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Container, TextField, Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { applicationFormStyles } from "../application/Applications-Style";
-import setAuthToken from "../../utils/withAuth";
 import axios from "axios";
-import jwtdecode from 'jwt-decode';
+// import jwtdecode from 'jwt-decode';
 
 const LogIN = () => {
   const url = "http://localhost:4000/api/users/login";

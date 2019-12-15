@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { BrowserRouter } from "react-router-dom";
 import { applicationFormStyles } from "../application/Applications-Style";
 import axios from "axios";
-import { A } from "hookrouter";
+// import { A } from "hookrouter";
 
 const Register = () => {
   const url = "http://localhost:4000/api/users/register";
@@ -139,7 +139,7 @@ const Register = () => {
           <Grid item xs={12}>
             <BrowserRouter>
               <p style={marginStyle}>
-                Already have an account? <A href="/login">Log in</A>
+                {/* Already have an account? <A href="/login">Log in</A> */}
               </p>
             </BrowserRouter>
           </Grid>
