@@ -2,51 +2,55 @@ import React, { useState, useEffect } from "react";
 import Tabbar from "../navigation/Tabbar";
 import ApplicationsTable from "../application/Applications-Table";
 import CreateApplication from "../application/Application-Form";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getApplications,
+  addApplication,
+  updateApplication,
+  deleteApplication
+} from "../../redux/actions/applicationActions";
 
 const UserDashboard = props => {
+  const applications = useSelector(state => state.application.applications); // state has application field that holds applications
   const [isLoaded, setLoaded] = useState(false);
-  const [applications, setApplications] = useState([]);
   const [value, setValue] = useState(0);
-  const url = "http://localhost:4000/api/applications/";
+  const dispatch = useDispatch();
 
   const refreshApplications = async () => {
-    const result = await axios(url);
     try {
-      setApplications(result.data);
+      dispatch(getApplications());
       setLoaded(true);
-    } catch (err) {
-      window.alert(err);
+    } catch (error) {
+      console.log(error);
       setLoaded(false);
     }
   };
 
   const deleteApplication = async id => {
     try {
-      await axios.delete(url + id);
-      refreshApplications();
-    } catch (err) {
-      window.alert(err);
+      await dispatch(deleteApplication(id)); // wait until we delete the application before refreshing
+      await refreshApplications();
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const createApplication = async app => {
     try {
-      await axios.post(url, app);
-      refreshApplications();
+      dispatch(addApplication(app));
+      await refreshApplications();
       setValue(0);
-    } catch (err) {
-      window.alert(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const editApplication = async app => {
     try {
-      await axios.put(url + app._id, app);
-      setLoaded(false);
-      refreshApplications();
-    } catch (err) {
-      window.alert(err);
+      dispatch(updateApplication(app));
+      await refreshApplications();
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -67,7 +71,7 @@ const UserDashboard = props => {
           <ApplicationsTable
             applications={applications}
             isLoaded={isLoaded}
-            handleDelete={deleteApplication}
+            handleDelete={removeApplication}
             handleEdit={editApplication}
           />
         }
