@@ -3,7 +3,7 @@ import { Container, TextField, Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { applicationFormStyles } from "../application/Applications-Style";
 import axios from "axios";
-// import jwtdecode from 'jwt-decode';
+import jwtdecode from 'jwt-decode';
 
 const LogIN = () => {
   const url = "http://localhost:4000/api/users/login";
@@ -37,7 +37,6 @@ const LogIN = () => {
       const res = await axios.post(url, userData);
       const {token} = res.data;
       window.localStorage.setItem("jwtToken", token);
-      window.location = 'http://localhost:3000/';
     } catch (err) {
       for (var prop in err.response.data) {
         if (err.response.data.hasOwnProperty(prop)) {
