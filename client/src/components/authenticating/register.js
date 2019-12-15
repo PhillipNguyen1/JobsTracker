@@ -6,7 +6,7 @@ import { applicationFormStyles } from "../application/Applications-Style";
 import axios from "axios";
 // import { A } from "hookrouter";
 
-const Register = () => {
+const RegisterPage = () => {
   const url = "http://localhost:4000/api/users/register";
   const [Users, setUsers] = useState([]);
   const classes = applicationFormStyles();
@@ -38,7 +38,6 @@ const Register = () => {
   const createNewUser = async userData => {
     try {
       await axios.post(url, userData);
-      
     } catch (err) {
       for (var prop in err.response.data) {
         if (err.response.data.hasOwnProperty(prop)) {
@@ -55,17 +54,8 @@ const Register = () => {
 
   return (
     <div>
-      <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-      >
-        <form
-          noValidate
-          autoComplete="off"
-          onSubmit={handleSubmit}
-        >
+      <Grid container direction="column" justify="center" alignItems="center">
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Grid item xs={12}>
             <h2 style={marginStyle}>
               <b>Register</b>

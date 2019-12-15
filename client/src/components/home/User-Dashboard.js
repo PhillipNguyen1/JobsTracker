@@ -7,7 +7,7 @@ import {
   getApplications,
   addApplication,
   updateApplication,
-  deleteApplication
+  deleteApplication as removeApplication
 } from "../../redux/actions/applicationActions";
 
 const UserDashboard = props => {
@@ -28,7 +28,7 @@ const UserDashboard = props => {
 
   const deleteApplication = async id => {
     try {
-      await dispatch(deleteApplication(id)); // wait until we delete the application before refreshing
+      await dispatch(removeApplication(id)); // wait until we delete the application before refreshing
       await refreshApplications();
     } catch (error) {
       console.log(error);
@@ -60,6 +60,7 @@ const UserDashboard = props => {
 
   useEffect(() => {
     refreshApplications();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -71,7 +72,7 @@ const UserDashboard = props => {
           <ApplicationsTable
             applications={applications}
             isLoaded={isLoaded}
-            handleDelete={removeApplication}
+            handleDelete={deleteApplication}
             handleEdit={editApplication}
           />
         }
