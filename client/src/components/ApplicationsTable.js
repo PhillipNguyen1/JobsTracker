@@ -10,9 +10,6 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import LoadingSpinner from "../shared/LoadingSpinner";
 
-// material UI styling. similar to CSS
-// I think this is called CSS in JS if you want to look it up
-// makeStyles & theme are a material UI thing
 const useStyles = makeStyles(theme => ({
   buttonEdit: {
     marginRight: theme.spacing(1)
@@ -25,22 +22,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// Functional component
-// recieve list of applications as props
 function ApplicationsTable(props) {
-  const classes = useStyles(); // This is how we can access the styling. ex) "classes.button"
+  const classes = useStyles();
   const [isLoaded, setLoaded] = useState(false);
   const [applications, setApplications] = useState([]);
   const url = "http://localhost:4000/api/applications";
 
   const [count, setCount] = useState(0);
 
-  // This async function gets called whenever the page loads and will update the data accordingly
   async function fetchData() {
-    console.log("FETCHING DATA");
     const result = await axios(url);
     try {
-      console.log(result.data);
       setApplications(result.data);
       setLoaded(true);
     } catch (err) {

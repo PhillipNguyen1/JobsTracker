@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Create Schema
 const ApplicationSchema = new Schema({
   companyName: {
     type: String,
     required: true
   },
   applicationDate: {
-    type: String,     // TODO: change to Date
+    type: String,
     required: true
   },
   position: {

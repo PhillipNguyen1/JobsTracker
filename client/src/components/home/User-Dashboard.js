@@ -10,7 +10,6 @@ const UserDashboard = props => {
   const [value, setValue] = useState(0);
   const url = "http://localhost:4000/api/applications/";
 
-  // GET all applications
   const refreshApplications = async () => {
     const result = await axios(url);
     try {
@@ -22,7 +21,6 @@ const UserDashboard = props => {
     }
   };
 
-  // DELETE application
   const deleteApplication = async id => {
     try {
       await axios.delete(url + id);
@@ -32,7 +30,6 @@ const UserDashboard = props => {
     }
   };
 
-  // POST application
   const createApplication = async app => {
     try {
       await axios.post(url, app);
@@ -43,7 +40,6 @@ const UserDashboard = props => {
     }
   };
 
-  // PUT application (edit)
   const editApplication = async app => {
     try {
       await axios.put(url + app._id, app);
@@ -54,12 +50,10 @@ const UserDashboard = props => {
     }
   };
 
-  // changes tab value/index to new value
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  // Fetches data when component is mounted
   useEffect(() => {
     refreshApplications();
   }, []);
