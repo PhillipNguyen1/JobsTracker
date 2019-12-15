@@ -5,7 +5,7 @@ import { applicationFormStyles } from "../application/Applications-Style";
 import axios from "axios";
 import jwtdecode from 'jwt-decode';
 
-const LogIN = () => {
+const LoginPage = () => {
   const url = "http://localhost:4000/api/users/login";
   const [Users, setUsers] = useState([]);
   const classes = applicationFormStyles();
@@ -102,4 +102,4 @@ const LogIN = () => {
   );
 };
 
-export default LogIN;
+export default LoginPage;
