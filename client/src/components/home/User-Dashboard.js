@@ -16,7 +16,6 @@ const UserDashboard = props => {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
 
-  // GET all applications
   const refreshApplications = async () => {
     try {
       dispatch(getApplications());
@@ -27,8 +26,7 @@ const UserDashboard = props => {
     }
   };
 
-  // DELETE application
-  const removeApplication = async id => {
+  const deleteApplication = async id => {
     try {
       await dispatch(deleteApplication(id)); // wait until we delete the application before refreshing
       await refreshApplications();
@@ -37,7 +35,6 @@ const UserDashboard = props => {
     }
   };
 
-  // POST application
   const createApplication = async app => {
     try {
       dispatch(addApplication(app));
@@ -48,7 +45,6 @@ const UserDashboard = props => {
     }
   };
 
-  // PUT application (edit)
   const editApplication = async app => {
     try {
       dispatch(updateApplication(app));
@@ -58,12 +54,10 @@ const UserDashboard = props => {
     }
   };
 
-  // changes tab value/index to new value
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  // Fetches data when component is mounted
   useEffect(() => {
     refreshApplications();
   }, []);
