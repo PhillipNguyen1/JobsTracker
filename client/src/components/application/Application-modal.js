@@ -16,7 +16,6 @@ const ApplicationModal = props => {
   const [formState, setFormState] = React.useState(app);
 
   React.useEffect(() => {
-    console.log(app);
     setFormState(app);
   }, [open, app]);
 

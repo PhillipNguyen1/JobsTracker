@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-// Application Model
 const Application = require("../../models/application.model");
 
 // @route   GET api/applications
 // @desc    Get all applications (no sorting)
 // @access  Public
-router.get("/", async (req, res) => { 
-  try{
+router.get("/", async (req, res) => {
+  try {
     const apps = await Application.find();
     res.json(apps);
-  }catch(err){
+  } catch (err) {
     console.error(err);
   }
 });
@@ -32,7 +31,6 @@ router.get("/:id", async (req, res) => {
 // @desc    Create an application
 // @access  Public
 router.post("/", async (req, res) => {
-  // Create new application by taking data from the json request
   try {
     const newApplication = new Application({
       companyName: req.body.companyName,
@@ -47,7 +45,7 @@ router.post("/", async (req, res) => {
       JobBoard: req.body.JobBoard
     });
 
-    res.json(await newApplication.save()); // Save new application to database
+    res.json(await newApplication.save());
   } catch (err) {
     console.error(err);
   }
@@ -77,11 +75,9 @@ router.delete("/:id", async (req, res) => {
   try {
     const app = await Application.findById(req.params.id);
     if (app == null) {
-      // If no application found with given id, return error
       console.log("Application not inside database");
       res.json({ success: false });
-    } // If app is found, delete it from the database
-    else res.json(await app.delete());
+    } else res.json(await app.delete());
   } catch (err) {
     console.error(err);
   }

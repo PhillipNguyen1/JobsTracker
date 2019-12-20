@@ -16,7 +16,6 @@ const ApplicationForm = props => {
     return !companyName || !position || !applicationDate;
   }
 
-  // Handles user input
   const handleChange = event => {
     const { name, value } = event.target;
 
