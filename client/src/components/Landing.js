@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Button } from "@material-ui/core";
 import jwt_decode from "jwt-decode";
-import { useRedirect } from "hookrouter";
 import { decode } from "punycode";
 
 const Landing = () => {
